@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh" class="dark-mode">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Floccus 全平台书签同步工具 - 自己动手丰衣足食系列</title>
+    <link rel="stylesheet" href="/assets/built/screen.css?v=ce5cdda17e">
+
+    <link rel="icon" href="http://192.168.100.6:2368/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
+    <link rel="canonical" href="http://192.168.100.6:2368/20221122-floccus-quan-ping-tai-shu-qian-tong-bu-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie-shi-shi-yao-floccus-homepage-https-floccus-org-github-https-github-com-floccusaddon-floccus-shi-yi-2/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="未定义应用 | Undefined APP">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Floccus 全平台书签同步工具 - 自己动手丰衣足食系列">
+    <meta property="og:description" content="Floccus 是什么
+
+Floccus (Homepage | Github) 是一个全平台的跨浏览器跨设备的书签同步工具，且支持使用自建 WebDAV 服务器。
+
+
+优势
+
+ 1. 支持 Google Drive、NextCloud Bookmarks、兼容 WebDAV 协议的服务（如：自建服务器、坚果云 等）
+ 2. 支持各种浏览器扩展，如：Chrome、Firefox、Edge、Opera、Brave、Vivaldi…… 除了 Safari；同时支持 Android 和 iOS 移动设备
+ 3. 支持加密存储
+
+
+安装
+
+
+浏览器支持
+
+以 ungoogle-chromium 为例进行安装和配置，先下载扩展 chrome web store，">
+    <meta property="og:url" content="http://192.168.100.6:2368/20221122-floccus-quan-ping-tai-shu-qian-tong-bu-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie-shi-shi-yao-floccus-homepage-https-floccus-org-github-https-github-com-floccusaddon-floccus-shi-yi-2/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta property="article:published_time" content="2022-11-22T08:39:51.000Z">
+    <meta property="article:modified_time" content="2022-11-22T08:39:51.000Z">
+    <meta property="article:tag" content="Selfhost">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Floccus 全平台书签同步工具 - 自己动手丰衣足食系列">
+    <meta name="twitter:description" content="Floccus 是什么
+
+Floccus (Homepage | Github) 是一个全平台的跨浏览器跨设备的书签同步工具，且支持使用自建 WebDAV 服务器。
+
+
+优势
+
+ 1. 支持 Google Drive、NextCloud Bookmarks、兼容 WebDAV 协议的服务（如：自建服务器、坚果云 等）
+ 2. 支持各种浏览器扩展，如：Chrome、Firefox、Edge、Opera、Brave、Vivaldi…… 除了 Safari；同时支持 Android 和 iOS 移动设备
+ 3. 支持加密存储
+
+
+安装
+
+
+浏览器支持
+
+以 ungoogle-chromium 为例进行安装和配置，先下载扩展 chrome web store，">
+    <meta name="twitter:url" content="http://192.168.100.6:2368/20221122-floccus-quan-ping-tai-shu-qian-tong-bu-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie-shi-shi-yao-floccus-homepage-https-floccus-org-github-https-github-com-floccusaddon-floccus-shi-yi-2/">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="bug">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Selfhost">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "未定义应用 | Undefined APP",
+        "url": "http://192.168.100.6:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://192.168.100.6:2368/content/images/size/w256h256/2022/08/android-chrome-192x192.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "bug",
+        "url": "http://192.168.100.6:2368/author/bug/",
+        "sameAs": []
+    },
+    "headline": "Floccus 全平台书签同步工具 - 自己动手丰衣足食系列",
+    "url": "http://192.168.100.6:2368/20221122-floccus-quan-ping-tai-shu-qian-tong-bu-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie-shi-shi-yao-floccus-homepage-https-floccus-org-github-https-github-com-floccusaddon-floccus-shi-yi-2/",
+    "datePublished": "2022-11-22T08:39:51.000Z",
+    "dateModified": "2022-11-22T08:39:51.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&ixlib=rb-4.0.3&q=80&w=2000",
+        "width": 1200,
+        "height": 800
+    },
+    "keywords": "Selfhost",
+    "description": "Floccus 是什么\n\nFloccus (Homepage | Github) 是一个全平台的跨浏览器跨设备的书签同步工具，且支持使用自建 WebDAV 服务器。\n\n\n优势\n\n 1. 支持 Google Drive、NextCloud Bookmarks、兼容 WebDAV 协议的服务（如：自建服务器、坚果云 等）\n 2. 支持各种浏览器扩展，如：Chrome、Firefox、Edge、Opera、Brave、Vivaldi…… 除了 Safari；同时支持 Android 和 iOS 移动设备\n 3. 支持加密存储\n\n\n安装\n\n\n浏览器支持\n\n以 ungoogle-chromium 为例进行安装和配置，先下载扩展 chrome web store，其它主流浏览器扩展 Firefox Add-ons、Edge Add-ons\n\n点击扩展图标，选择新增帐号。\n\n第一步，支持三种同步服务：Nextcloud Bookmarks、WebDAV、Google Drive，这里我们因为使用自建服务器所以选择 WebDAV，其它两种模式的配置也类似。\n\n第二步， 配置好对应的 URL、用户名、密",
+    "mainEntityOfPage": "http://192.168.100.6:2368/20221122-floccus-quan-ping-tai-shu-qian-tong-bu-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie-shi-shi-yao-floccus-homepage-https-floccus-org-github-https-github-com-floccusaddon-floccus-shi-yi-2/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.3">
+    <link rel="alternate" type="application/rss+xml" title="未定义应用 | Undefined APP" href="http://192.168.100.6:2368/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="26184500ae615c220cca4c19c1" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="http://192.168.100.6:2368/" data-locale="zh" crossorigin="anonymous"></script>
+    
+    <link href="http://192.168.100.6:2368/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ce5cdda17e"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=ce5cdda17e">
+    <!-- prism.js -->
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.bootcdn.net/ajax/libs/prism/1.30.0/prism-gruvbox-dark.min.css" type="text/css" rel="stylesheet" />
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-gruvbox-dark.min.css" integrity="sha512-XZoe1WroNfbcndQJexn+pbMEytiaSYRHDuKjew+Nn0xYSTmB4sfoZnBdqYCrXq2IwAcPZS/sXE5ju/JbppYOsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- Toc -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.css" integrity="sha512-/ANQiHMqpRl+E0zEAd250N21OOmJsYbhiJWY0Y8yG0TII47yZn1+gDNobMlf+h/FTyImprLXYgXbX3bCYyq/vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--
+<link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
+-->
+<style type="text/css">
+/* 
+.gh-toc  ol  li {
+    display: block;
+    margin-left: 20px;
+    list-style: decimal;
+}
+*/
+.gh-toc  ol {
+    counter-reset: item;
+}
+.gh-toc  li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+}
+.gh-toc a {
+    text-decoration: none;
+}
+ .gh-content {
+    position: relative;
+ }
+.gh-toc > .toc-list {
+    position: relative;
+}
+
+.toc-list {
+    overflow: hidden;
+    list-style: none;
+}
+
+@media (min-width: 1300px) {
+     .gh-sidebar {
+        position: absolute; 
+        top: 0;
+        bottom: 0;
+        margin-top: 4vmin;
+        grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
+    }
+   
+    .gh-toc {
+        position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
+        top: 4vmin;
+    }
+}
+
+.gh-toc .is-active-link::before {
+    background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
+} 
+</style>
+
+<!-- Google translate -->
+<style type="text/css">
+    #google_translate_element div {
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+    }
+    #google_translate_element select {
+        width: 64px;
+        height: 24px;
+        border-radius: 4px;
+    }
+    
+</style>
+</head>
+
+<body class="post-template tag-selfhost is-head-left-logo">
+<div class="site">
+
+    <header id="gh-head" class="gh-head gh-outer">
+        <div class="gh-head-inner">
+            <div class="gh-head-brand">
+                <div class="gh-head-brand-wrapper">
+                    <a class="gh-head-logo" href="http://192.168.100.6:2368">
+                            未定义应用 | Undefined APP
+                    </a>
+                </div>
+                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button class="gh-burger"></button>
+            </div>
+
+            <nav class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-blog"><a href="http://192.168.100.6:2368/">Blog</a></li>
+    <li class="nav-about"><a href="http://192.168.100.6:2368/about/">About</a></li>
+</ul>
+
+            </nav>
+
+            <div class="gh-head-actions">
+	    <!-- google translate element -->
+	    <div id="google_translate_element"></div>
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="site-content">
+        
+<div class="content-area">
+<main class="site-main">
+
+
+    <article class="post tag-selfhost featured single-post">
+
+        <header class="article-header gh-canvas">
+            <div class="post-meta">
+                <span class="post-meta-item post-meta-date">
+                    <time datetime="2022-11-22">Nov 22, 2022</time>
+                </span>
+                    <span class="post-meta-item post-meta-length">3 min read</span>
+                    <span class="post-meta-item post-meta-tags"><a class="post-tag post-tag-selfhost" href="/tag/selfhost/" title="Selfhost">Selfhost</a></span>
+            </div>
+            <h1 class="post-title">Floccus 全平台书签同步工具 - 自己动手丰衣足食系列</h1>
+                <figure class="post-media kg-width-wide">
+        <img
+            class="post-image"
+            srcset="https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;400 400w,
+                    https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750 750w,
+                    https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960 960w,
+                    https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1140 1140w,
+                    https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1920 1920w"
+            sizes="(min-width: 960px) 960px, 92vw"
+            src="https://images.unsplash.com/photo-1585829365671-3ef0e1553a66?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDgyfHxib29rbWFya3xlbnwwfHx8fDE2NjkxMDYyODQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960"
+            alt="Floccus 全平台书签同步工具 - 自己动手丰衣足食系列"
+            loading="lazy"
+        >
+
+            <figcaption>Photo by <a href="https://unsplash.com/@markuswinkler?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Markus Winkler</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></figcaption>
+    </figure>
+        </header>
+
+        <div class="gh-content gh-canvas">
+            <aside class="gh-sidebar"><div class="gh-toc"></div></aside> 
+            <h1></h1><h2 id="floccus-%E6%98%AF%E4%BB%80%E4%B9%88">Floccus 是什么</h2><p>Floccus (<a href="https://floccus.org/?ref=undefapp.com">Homepage</a> | <a href="https://github.com/floccusaddon/floccus?ref=undefapp.com">Github</a>) 是一个全平台的跨浏览器跨设备的书签同步工具，且支持使用自建 WebDAV 服务器。</p><h2 id="%E4%BC%98%E5%8A%BF">优势</h2><ol><li>支持 <a href="https://drive.google.com/?ref=undefapp.com">Google Drive</a>、<a href="https://github.com/nextcloud/bookmarks?ref=undefapp.com">NextCloud Bookmarks</a>、兼容 WebDAV 协议的服务（如：自建服务器、<a href="https://www.jianguoyun.com/?ref=undefapp.com">坚果云</a> 等）</li><li>支持各种浏览器扩展，如：Chrome、Firefox、Edge、Opera、Brave、Vivaldi…… <strong>除了 Safari</strong>；同时支持 Android 和 iOS 移动设备</li><li>支持加密存储</li></ol><h2 id="%E5%AE%89%E8%A3%85">安装</h2><h3 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81">浏览器支持</h3><p>以 <a href="http://192.168.100.6:2368/ungoogle-chromium-quan-ping-tai-chun-jing-ban-liu-lan-qi/">ungoogle-chromium</a> 为例进行安装和配置，先下载扩展 <a href="https://chrome.google.com/webstore/detail/floccus/fnaicdffflnofjppbagibeoednhnbjhg?ref=undefapp.com">chrome web store</a>，其它主流浏览器扩展 <a href="https://addons.mozilla.org/en-US/firefox/addon/floccus/?ref=undefapp.com">Firefox Add-ons</a>、<a href="https://microsoftedge.microsoft.com/addons/detail/floccus-bookmarks-sync/gjkddcofhiifldbllobcamllmanombji?ref=undefapp.com">Edge Add-ons</a></p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-new-account.png" class="kg-image" alt loading="lazy" width="2000" height="1418" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-new-account.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-new-account.png 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/11/floccus-new-account.png 1600w, http://192.168.100.6:2368/content/images/2022/11/floccus-new-account.png 2214w" sizes="(min-width: 720px) 720px"></figure><p>点击扩展图标，选择新增帐号。</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-config1.png" class="kg-image" alt loading="lazy" width="1988" height="1550" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-config1.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-config1.png 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/11/floccus-config1.png 1600w, http://192.168.100.6:2368/content/images/2022/11/floccus-config1.png 1988w" sizes="(min-width: 720px) 720px"></figure><p>第一步，支持三种同步服务：Nextcloud Bookmarks、WebDAV、Google Drive，这里我们因为使用自建服务器所以选择 WebDAV，其它两种模式的配置也类似。</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-config2.png" class="kg-image" alt loading="lazy" width="1988" height="1550" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-config2.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-config2.png 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/11/floccus-config2.png 1600w, http://192.168.100.6:2368/content/images/2022/11/floccus-config2.png 1988w" sizes="(min-width: 720px) 720px"></figure><p>第二步， 配置好对应的 URL、用户名、密码。</p><p>特殊的是最后一项 passphrase，书签通过密码加密后进行存储，如果<strong>使用其它三方的存储平台强烈建议配置该选项</strong>。如果自建服务可以留空，方便备份。</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-config3.png" class="kg-image" alt loading="lazy" width="1988" height="1550" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-config3.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-config3.png 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/11/floccus-config3.png 1600w, http://192.168.100.6:2368/content/images/2022/11/floccus-config3.png 1988w" sizes="(min-width: 720px) 720px"></figure><p>第三步，文件名可以使用默认。</p><p>文件格式有 XBEL 和 HTML 两种选择，原计划使用更加通用的 HTML 格式，但是在 iOS 客户端使用过程中同步报错，所以使用了默认的 XBEL。<br>本地文件夹，因为部分浏览器不支持直接使用根文件夹，所以选择其它书签文件夹。另外还有一个选项叫同步 Tab，不进行本地书签的同步，只同步已经打开的 Tab 页。</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-bookmarks.png" class="kg-image" alt loading="lazy" width="1892" height="1550" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-bookmarks.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-bookmarks.png 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/11/floccus-bookmarks.png 1600w, http://192.168.100.6:2368/content/images/2022/11/floccus-bookmarks.png 1892w" sizes="(min-width: 720px) 720px"></figure><p>其它默认配置，点击同步之后本地数据就完成上传。同步模式也有三种：</p><ul><li>合并（Merge）：默认模式，会合并本地和远程服务端数据，如果会多端编辑选择此模式。</li><li>拉（Pull Down）：拉取远程服务端数据，覆盖本地修改。本地不修改，只拉取主设备数据选择此模式。</li><li>推（Push Up）：推送本地数据，覆盖远程服务端数据。只有一台主设备修改时，主设备选择此模式。</li></ul><h3 id="app-%E6%94%AF%E6%8C%81">APP 支持</h3><p>可以通过 <a href="https://play.google.com/store/apps/details?id=org.handmadeideas.floccus&ref=undefapp.com">Google Play</a> | <a href="https://f-droid.org/en/packages/org.handmadeideas.floccus/?ref=undefapp.com">F-DROID</a> 和 <a href="https://apps.apple.com/us/app/floccus/id1626998357?ref=undefapp.com">APP Store</a> 分别下载 iOS 和 Android 应用，配置方式和浏览器扩展一致。</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/11/floccus-mobile.jpeg" class="kg-image" alt loading="lazy" width="1170" height="2391" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/11/floccus-mobile.jpeg 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/11/floccus-mobile.jpeg 1000w, http://192.168.100.6:2368/content/images/2022/11/floccus-mobile.jpeg 1170w" sizes="(min-width: 720px) 720px"></figure><p>各端配置完成，书签就可以联动起来了。</p>
+        </div>
+
+
+    </article>
+
+    
+    <section class="gh-comments gh-canvas">
+<div id="disqus_thread"></div>
+    </section>
+
+        
+<section class="related-posts gh-canvas">
+
+    <h3 class="related-title">You might also like...</h3>
+
+    <div class="related-feed">
+
+        <article class="post tag-selfhost tag-docker tag-software tag-nas featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1646217120680-735b95df956b?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxSZXN0cmljdGVkJTIwYWNjZXNzfGVufDB8fHx8MTcyNTk0MjE1MXww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="FreshRSS 解决 sspai 图片防盗链问题" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">FreshRSS 解决 sspai 图片防盗链问题</a>
+                </h2>
+                <time class="post-meta" datetime="2024-09-10">Sep 10, 2024</time>
+            </header>
+
+        </article>
+
+
+        <article class="post tag-multimedia tag-selfhost tag-plex featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1589261820052-f9b9075c186c?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDI2fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3MzA1ODU2MQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-07">Jan 7, 2023</time>
+            </header>
+
+        </article>
+
+
+        <article class="post tag-multimedia tag-selfhost tag-docker featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-05">Jan 5, 2023</time>
+            </header>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+</main>
+</div>
+
+    </div>
+
+    <footer class="gh-foot no-menu gh-outer">
+        <div class="gh-foot-inner gh-inner">
+            <div class="gh-copyright">
+                未定义应用 | Undefined APP © 2026
+            </div>
+            <div class="gh-powered-by">
+		    <a href="https://beian.miit.gov.cn/" target="_blank">备案号：</a>
+		    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2022020576号-1</a>&nbsp;|&nbsp;
+			<a class="beian" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702003004">川公网安备 51010702003004号</a>&nbsp;|&nbsp;
+                <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/assets/built/main.min.js?v=ce5cdda17e"></script>
+<style type="text/css">
+	.beian::before {
+		content: "";
+		padding: 0 20px 0 0;
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+		background: url("/content/images/beian.png");
+		background-size: cover;
+	}
+</style>
+
+<!-- prism.js -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuMm1z2JLJG6XVU7C/mR+E7xBUqCivykuhlzfqxXBXbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js" integrity="sha512-Uw06iFFf9hwoN77+kPl/1DZL66tKsvZg6EWm7n6QxInyptVuycfrO52hATXDRozk7KWeXnrSueiglILct8IkkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- toc -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.js" integrity="sha512-BZUSsJAPNtkd+kdY/bD7hvQKZ5zlgWt++KGy/Pa/5uEJNgs0jZ6JaX6MuclRUanowuxmhb5S3LRPEa3QmrUVfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    tocbot.init({
+  		tocSelector: '.gh-toc',
+  		contentSelector: '.gh-content',
+  		headingSelector: 'h1, h2, h3, h4',
+        collapseDepth: 6,
+  		hasInnerContainers: true,
+	});
+</script>
+
+<!-- open external links in a new tab -->
+<script type="text/javascript">
+$(document).ready(function() { 
+    $(".gh-content a").each(function(){
+        if(this.href.indexOf(window.location.host) == -1) {
+            $(this).attr("target", "_blank");
+        }
+    })
+});
+</script>
+
+<!-- google translator -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4JYSH5XC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T4JYSH5XC4');
+</script>
+
+<!-- disqus -->
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{url absolute="true"}}";
+        this.page.identifier = "ghost-{{comment_id}}"
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://undefapp.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</body>
+</html>

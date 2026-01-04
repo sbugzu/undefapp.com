@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh" class="dark-mode">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ghost Blog 搭建 - 自己动手丰衣足食系列</title>
+    <link rel="stylesheet" href="/assets/built/screen.css?v=ce5cdda17e">
+
+    <link rel="icon" href="http://192.168.100.6:2368/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
+    <link rel="canonical" href="http://192.168.100.6:2368/ghost-blog-da-jian-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="未定义应用 | Undefined APP">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ghost Blog 搭建 - 自己动手丰衣足食系列">
+    <meta property="og:description" content="前言
+
+本文会介绍基于 Docker 快速搭建一套 Ghost 博客，但是不会包含 VPS 申请、域名申请、备案申请等。
+
+
+为什么选择 Ghost
+
+最早使用 Wordpress，后面有使用一段时间 Jekyll，本次为什么选择 Ghost 呢？
+Jekyll 之前是基于 Github 的全静态 Blog，受限于 Github 的速度，国内不是太友好，加之皮肤很少而且还丑首先弃掉了。
+
+Wordpress 基于 php 有非常成熟的社区，网上各种资料都非常多，数量巨大的插件和皮肤。而且不限于 Blog 功能，还能变身电商平台。另外很多 VPS 服务商直接提供了 Wordpress 的镜像可以做到开箱即用。
+
+Ghost 基于 Node.js 开发所以更加的轻量化，">
+    <meta property="og:url" content="http://192.168.100.6:2368/ghost-blog-da-jian-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta property="article:published_time" content="2022-09-13T15:16:09.000Z">
+    <meta property="article:modified_time" content="2022-09-15T05:56:21.000Z">
+    <meta property="article:tag" content="Selfhost">
+    <meta property="article:tag" content="Docker">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ghost Blog 搭建 - 自己动手丰衣足食系列">
+    <meta name="twitter:description" content="前言
+
+本文会介绍基于 Docker 快速搭建一套 Ghost 博客，但是不会包含 VPS 申请、域名申请、备案申请等。
+
+
+为什么选择 Ghost
+
+最早使用 Wordpress，后面有使用一段时间 Jekyll，本次为什么选择 Ghost 呢？
+Jekyll 之前是基于 Github 的全静态 Blog，受限于 Github 的速度，国内不是太友好，加之皮肤很少而且还丑首先弃掉了。
+
+Wordpress 基于 php 有非常成熟的社区，网上各种资料都非常多，数量巨大的插件和皮肤。而且不限于 Blog 功能，还能变身电商平台。另外很多 VPS 服务商直接提供了 Wordpress 的镜像可以做到开箱即用。
+
+Ghost 基于 Node.js 开发所以更加的轻量化，">
+    <meta name="twitter:url" content="http://192.168.100.6:2368/ghost-blog-da-jian-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="bug">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Selfhost, Docker">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="801">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "未定义应用 | Undefined APP",
+        "url": "http://192.168.100.6:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://192.168.100.6:2368/content/images/size/w256h256/2022/08/android-chrome-192x192.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "bug",
+        "url": "http://192.168.100.6:2368/author/bug/",
+        "sameAs": []
+    },
+    "headline": "Ghost Blog 搭建 - 自己动手丰衣足食系列",
+    "url": "http://192.168.100.6:2368/ghost-blog-da-jian-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/",
+    "datePublished": "2022-09-13T15:16:09.000Z",
+    "dateModified": "2022-09-15T05:56:21.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&ixlib=rb-1.2.1&q=80&w=2000",
+        "width": 1200,
+        "height": 801
+    },
+    "keywords": "Selfhost, Docker",
+    "description": "前言\n\n本文会介绍基于 Docker 快速搭建一套 Ghost 博客，但是不会包含 VPS 申请、域名申请、备案申请等。\n\n\n为什么选择 Ghost\n\n最早使用 Wordpress，后面有使用一段时间 Jekyll，本次为什么选择 Ghost 呢？\nJekyll 之前是基于 Github 的全静态 Blog，受限于 Github 的速度，国内不是太友好，加之皮肤很少而且还丑首先弃掉了。\n\nWordpress 基于 php 有非常成熟的社区，网上各种资料都非常多，数量巨大的插件和皮肤。而且不限于 Blog 功能，还能变身电商平台。另外很多 VPS 服务商直接提供了 Wordpress 的镜像可以做到开箱即用。\n\nGhost 基于 Node.js 开发所以更加的轻量化，时间上也更加的年轻，所以设计、体验以及特性都更加现代化。比如像内建的 SEO，体验更好的编辑器，原生 REST API 支持等。功能上还有非常大的特点：内置付费模式和邮件订阅。\n\n当然以上这些都不是最终选择 Ghost 的原因，唯一原因是「没有用过」，想体验体验。\n\n\n一点点建议\n\n通过一段时间 Ghost 的使用，给个人使",
+    "mainEntityOfPage": "http://192.168.100.6:2368/ghost-blog-da-jian-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.3">
+    <link rel="alternate" type="application/rss+xml" title="未定义应用 | Undefined APP" href="http://192.168.100.6:2368/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="26184500ae615c220cca4c19c1" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="http://192.168.100.6:2368/" data-locale="zh" crossorigin="anonymous"></script>
+    
+    <link href="http://192.168.100.6:2368/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ce5cdda17e"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=ce5cdda17e">
+    <!-- prism.js -->
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.bootcdn.net/ajax/libs/prism/1.30.0/prism-gruvbox-dark.min.css" type="text/css" rel="stylesheet" />
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-gruvbox-dark.min.css" integrity="sha512-XZoe1WroNfbcndQJexn+pbMEytiaSYRHDuKjew+Nn0xYSTmB4sfoZnBdqYCrXq2IwAcPZS/sXE5ju/JbppYOsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- Toc -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.css" integrity="sha512-/ANQiHMqpRl+E0zEAd250N21OOmJsYbhiJWY0Y8yG0TII47yZn1+gDNobMlf+h/FTyImprLXYgXbX3bCYyq/vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--
+<link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
+-->
+<style type="text/css">
+/* 
+.gh-toc  ol  li {
+    display: block;
+    margin-left: 20px;
+    list-style: decimal;
+}
+*/
+.gh-toc  ol {
+    counter-reset: item;
+}
+.gh-toc  li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+}
+.gh-toc a {
+    text-decoration: none;
+}
+ .gh-content {
+    position: relative;
+ }
+.gh-toc > .toc-list {
+    position: relative;
+}
+
+.toc-list {
+    overflow: hidden;
+    list-style: none;
+}
+
+@media (min-width: 1300px) {
+     .gh-sidebar {
+        position: absolute; 
+        top: 0;
+        bottom: 0;
+        margin-top: 4vmin;
+        grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
+    }
+   
+    .gh-toc {
+        position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
+        top: 4vmin;
+    }
+}
+
+.gh-toc .is-active-link::before {
+    background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
+} 
+</style>
+
+<!-- Google translate -->
+<style type="text/css">
+    #google_translate_element div {
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+    }
+    #google_translate_element select {
+        width: 64px;
+        height: 24px;
+        border-radius: 4px;
+    }
+    
+</style>
+</head>
+
+<body class="post-template tag-selfhost tag-docker is-head-left-logo">
+<div class="site">
+
+    <header id="gh-head" class="gh-head gh-outer">
+        <div class="gh-head-inner">
+            <div class="gh-head-brand">
+                <div class="gh-head-brand-wrapper">
+                    <a class="gh-head-logo" href="http://192.168.100.6:2368">
+                            未定义应用 | Undefined APP
+                    </a>
+                </div>
+                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button class="gh-burger"></button>
+            </div>
+
+            <nav class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-blog"><a href="http://192.168.100.6:2368/">Blog</a></li>
+    <li class="nav-about"><a href="http://192.168.100.6:2368/about/">About</a></li>
+</ul>
+
+            </nav>
+
+            <div class="gh-head-actions">
+	    <!-- google translate element -->
+	    <div id="google_translate_element"></div>
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="site-content">
+        
+<div class="content-area">
+<main class="site-main">
+
+
+    <article class="post tag-selfhost tag-docker featured single-post">
+
+        <header class="article-header gh-canvas">
+            <div class="post-meta">
+                <span class="post-meta-item post-meta-date">
+                    <time datetime="2022-09-13">Sep 13, 2022</time>
+                </span>
+                    <span class="post-meta-item post-meta-length">8 min read</span>
+                    <span class="post-meta-item post-meta-tags"><a class="post-tag post-tag-selfhost" href="/tag/selfhost/" title="Selfhost">Selfhost</a></span>
+            </div>
+            <h1 class="post-title">Ghost Blog 搭建 - 自己动手丰衣足食系列</h1>
+                <figure class="post-media kg-width-wide">
+        <img
+            class="post-image"
+            srcset="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;400 400w,
+                    https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;750 750w,
+                    https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;960 960w,
+                    https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;1140 1140w,
+                    https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;1920 1920w"
+            sizes="(min-width: 960px) 960px, 92vw"
+            src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDV8fGJsb2dnZXJ8ZW58MHx8fHwxNjYzMDgyMzUw&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;960"
+            alt="Ghost Blog 搭建 - 自己动手丰衣足食系列"
+            loading="lazy"
+        >
+
+            <figcaption>Photo by <a href="https://unsplash.com/@arnelhasanovic?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Arnel Hasanovic</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></figcaption>
+    </figure>
+        </header>
+
+        <div class="gh-content gh-canvas">
+            <aside class="gh-sidebar"><div class="gh-toc"></div></aside> 
+            <h2 id="%E5%89%8D%E8%A8%80">前言</h2><p>本文会介绍基于 <a href="https://www.docker.com/?ref=undefapp.com">Docker</a> 快速搭建一套 <a href="https://ghost.org/?ref=undefapp.com">Ghost</a> 博客，但是不会包含 VPS 申请、域名申请、备案申请等。</p><h3 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-ghost">为什么选择 Ghost</h3><p>最早使用 <a href="https://wordpress.org/?ref=undefapp.com">Wordpress</a>，后面有使用一段时间 <a href="https://jekyllrb.com/?ref=undefapp.com">Jekyll</a>，本次为什么选择 Ghost 呢？<br>Jekyll 之前是基于 Github 的全静态 Blog，受限于 Github 的速度，国内不是太友好，加之皮肤很少而且还丑首先弃掉了。</p><p>Wordpress 基于 php 有非常成熟的社区，网上各种资料都非常多，数量巨大的插件和皮肤。而且不限于 Blog 功能，还能变身电商平台。另外很多 VPS 服务商直接提供了 Wordpress 的镜像可以做到开箱即用。</p><p>Ghost 基于 Node.js 开发所以更加的轻量化，时间上也更加的年轻，所以设计、体验以及特性都更加现代化。比如像内建的 SEO，体验更好的编辑器，原生 REST API 支持等。功能上还有非常大的特点：内置付费模式和邮件订阅。</p><p>当然以上这些都不是最终选择 Ghost 的原因，唯一原因是「没有用过」，想体验体验。</p><h3 id="%E4%B8%80%E7%82%B9%E7%82%B9%E5%BB%BA%E8%AE%AE">一点点建议</h3><p>通过一段时间 Ghost 的使用，给个人使用一点点建议，如果只是想简单写写 Blog，不想太折腾（指不去整那些花活）喜欢更好的体验，可以选择 Ghost。但是如果有很多的想法（功能的扩展，样式啊），也不太想折腾（不想自己手搓各种功能），使用 Wordpress 通过扩展和皮肤会更适合一些。</p><p>最后也是最最重要的，对个人博客来说以上平台的选择都是浮云，回归本质<strong>内容为王</strong>。</p><h2 id="%E5%87%86%E5%A4%87">准备</h2><ul><li><strong>服务器：</strong> VPS 准备，能有单核和 1G 内存就够了，目前使用的腾讯的<a href="https://cloud.tencent.com/product/lighthouse?ref=undefapp.com">轻量应用服务器</a>（2 核、2G）</li><li><strong>域名：</strong> 指向当前服务器的可用域名</li><li><strong>系统：</strong> 可选择使用 Ubuntu/Debian，且安装好 Docker 环境（<a href="http://192.168.100.6:2368/docker-huan-jing-he-compose-de-jian-yao-an-zhuang/">Docker 环境和 compose 的简要安装</a>）</li><li><strong>其它：</strong> 使用国内的空间和域名还需要备案等，否则无法访问 80 和 443 端口</li></ul><h2 id="%E6%90%AD%E5%BB%BA">搭建</h2><p>整体结构如下：</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/09/ghost-docker.png" class="kg-image" alt loading="lazy" width="1481" height="918" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/09/ghost-docker.png 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/09/ghost-docker.png 1000w, http://192.168.100.6:2368/content/images/2022/09/ghost-docker.png 1481w" sizes="(min-width: 720px) 720px"></figure><p>考虑是搭建的个人博客，流量不会太大，所以把几个容器放在了一起。如果流量上来了，可以考虑上 CDN，拆成多个容器分别扩容，Ghost 的图片放到各种云存储上等等。如果流量能起来这些都不是问题。</p><blockquote>如果对 Docker 已经非常了解，可以直接跳到<a href="#最终配置">最终配置</a>，按需进行修改。</blockquote><h3 id="caddy-%E9%85%8D%E7%BD%AE">Caddy 配置</h3><p><a href="https://caddyserver.com/?ref=undefapp.com">Caddy</a> 是使用 <a href="https://go.dev/?ref=undefapp.com">Golang</a> 编写支持 HTTP/2 的 Web 服务端，在这里作为反向代理和 SSL 证书的自动签发。</p><h4 id="%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9">创建文件夹</h4><pre><code class="language-shell">sudo mkdir /opt/ghost
+sudo chown {USER_NAME}:{GROUP_NAME} /opt/ghost
+mkdir /opt/ghost/caddy
+</code></pre><p><code>{USER_NAME}</code> 可通过命令 <code>whoami</code> 获取<br><code>{GROUP_NAME}</code> 一般和 <code>{USER_NAME}</code> 一致，可通过命令 <code>groups {USER_NAME}</code> 查看当前用户所在的用户组。</p><h4 id="%E5%88%9B%E5%BB%BA-compose-%E6%96%87%E4%BB%B6">创建 Compose 文件</h4><pre><code class="language-shell">cd /opt/ghost
+touch compose.yml
+</code></pre><pre><code class="language-yaml">services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /opt/ghost/caddy/Caddyfile:/etc/caddy/Caddyfile
+</code></pre><h4 id="%E5%88%9B%E5%BB%BA-caddyfile-%E6%96%87%E4%BB%B6">创建 Caddyfile 文件</h4><p>在目录 <code>/opt/ghost/caddy</code> 路径下创建 <code>Caddyfile</code>，如下内容：</p><pre><code>{
+    email {MAIL_ADDRESS}
+}
+(dns_provider) {
+    tls {
+        dns dnspod {DNSPOD_TOKEN}
+    }
+}
+*.{DOMAIN_NAME}, {DOMAIN_NAME} {
+    encode zstd gzip
+    import dns_provider
+    header {
+        Strict-Transport-Security max-age=31536000;
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy no-referrer-when-downgrade
+    }
+}
+</code></pre><p>其中比较关键的配置：<br><code>email</code> 是用于管理网站证书的ACME账户的电子邮件地址，把 <code>{MAIL_ADDRESS}</code> 替换为自己的邮箱地址。<br><code>dns_provider</code> DNS 服务的提供商片段，在签发证书时需要增加 DNS 记录进行验证。这里因为使用腾讯 <a href="https://www.dnspod.cn/?ref=undefapp.com">DNSPod</a> 管理域名，所以指定 dns_provider 为 <code>dnspod</code>。同时需要配置对应的 <code>DNSPOD_TOKEN</code>，dnspod 的 TOKEN 格式为 <code>{APP_ID},{APP_TOKEN}</code>，获取方式可以参考腾讯帮助文档<a href="https://docs.dnspod.cn/account/dnspod-token/?ref=undefapp.com">密钥管理</a>。<br><code>{DOMAIN_NAME}</code> 替换为自己的域名，其中 <code>*</code> 代表申请的是泛域名证书。</p><p>现在用下面的命令启动，测试一下</p><pre><code class="language-shell">cd /opt/ghost
+docker compose up
+</code></pre><p>会发现启动失败，找到不 dnspod 模块，查了下是官方容器默认没有编译进去，所以需要手动进行编译。</p><h4 id="%E7%BC%96%E8%AF%91-dns-provider">编译 DNS provider</h4><h5 id="%E5%88%9B%E5%BB%BA-dockfile">创建 Dockfile</h5><p>在 <code>/opt/ghost/caddy</code> 目录下，创建 <code>Dockfile</code> 文件，内容如下</p><pre><code class="language-dockerfile">FROM caddy:2-builder-alpine AS builder
+ENV GOPROXY "https://goproxy.cn,direct"
+RUN xcaddy build \
+    --with github.com/caddy-dns/dnspod
+
+FROM caddy:2-alpine
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+</code></pre><p>需要修改的内容在 <code>--with</code> 后面部分，因为使用 DNSPod 所以编译了对应的模块。完整的 DNS 服务商支持列表可以在 <a href="https://github.com/orgs/caddy-dns/repositories?type=all&ref=undefapp.com">caddy-dns</a> 看到，包含：vultr、cloudflare、digitalocean、godaddy 和 alidns 等。根据自身的 DNS 服务商选择，一般只需要配置 token，具体规则见各模块的说明。</p><h5 id="%E4%BF%AE%E6%94%B9-composeyaml-%E6%96%87%E4%BB%B6">修改 compose.yaml 文件</h5><pre><code class="language-yaml">services:
+  caddy:
+    # image: caddy:2-alpine
+    build: ./caddy
+    restart: unless-stopped
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /opt/ghost/caddy/Caddyfile:/etc/caddy/Caddyfile
+</code></pre><p>使用自己编译的镜像。</p><h4 id="caddy-%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88%EF%BC%9Aacme-nginx">Caddy 的替代方案：ACME + Nginx</h4><p>也可以使用 <a href="https://github.com/acmesh-official/acme.sh?ref=undefapp.com">acme.sh</a> 和 <a href="https://nginx.org/?ref=undefapp.com">Nginx</a> 实现反向代理和 SSL 证书自动续签同样的效果，基于 Docker 的配置可以参考 <a href="https://github.com/acmesh-official/acme.sh/wiki/deploy-to-docker-containers?ref=undefapp.com">deploy to docker container</a> 的第 5 部分实现。<br>这里选择使用 Caddy 也是因为之前没有用过。</p><h3 id="ghost-mysql">Ghost + MySQL</h3><h4 id="%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9-1">创建文件夹</h4><pre><code class="language-shell">cd /opt/ghost
+mkdir ghost db
+</code></pre><h4 id="%E4%BF%AE%E6%94%B9-composeyaml-%E6%96%87%E4%BB%B6-1">修改 compose.yaml 文件</h4><pre><code class="language-yaml">services:
+  ...
+  
+  ghost:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    container_name: ghost
+    volumes:
+      - /opt/ghost/ghost/data:/var/lib/ghost/content
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: db
+      database__connection__database: ${MYSQL_DATABASE}
+      database__connection__user: ${MYSQL_USERNAME}
+      database__connection__password: ${MYSQL_PASSWORD}
+      mail__transport: SMTP
+      mail__options__host: ${SMTP_HOST}
+      mail__options__port: ${SMTP_PORT}
+      mail__options__auth__user: ${SMTP_USERNAME}
+      mail__options__auth__pass: ${SMTP_PASSWORD}
+	  mail__from: Notification &lt;{MAIL_ADDRESS}&gt;
+      url: https://{DOMAIN_NAME}
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: db
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - /opt/ghost/db:/var/lib/mysql
+
+</code></pre><p>敏感数据的配置放在 <code>/opt/ghost</code> 目录下的 <code>.env</code> 文件中进行定义<br><code>mail__</code> 部分是可选配置，如果只是个人博客也可不配置。<code>MAIL_ADDERSS</code> 配置为发件人的邮件地址<br><code>DOMAIN_NAME</code> 替换为域名地址，后继通过 <code>https://{DOAMIN_NAME}</code> 进行访问。</p><h4 id="env-%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE">.env 文件配置</h4><pre><code class="language-ini">MYSQL_USERNAME=ghost
+MYSQL_PASSWORD=ghost_password
+MYSQL_DATABASE=ghost
+MYSQL_ROOT_PASSWORD=root_password
+
+SMTP_HOST={SMTP_SERVER}
+SMTP_PORT={SMTP_PORT}
+SMTP_USERNAME={SMTP_USERNAME}
+SMTP_PASSWORD={SMTP_PASSWORD}
+</code></pre><p><code>MYSQL_</code> 配置按需修改<br><code>SMTP_</code> 配置为可选配置，可从邮件服务商处获取</p><h3 id="%E6%9C%80%E7%BB%88%E9%85%8D%E7%BD%AE">最终配置</h3><h4 id="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">目录结构</h4><pre><code>[/opt/ghost]
+ ├─ [caddy]
+ │   ├─ Caddyfile
+ │   └─ Dockerfile
+ ├─ [db]
+ ├─ [ghost]
+ │   └─ [data]
+ ├─ .env
+ └─ compose.yaml
+</code></pre><h4 id="caddyfile">Caddyfile</h4><pre><code>{
+    email {MAIL_ADDRESS}
+}
+(dns_provider) {
+    tls {
+        dns dnspod {DNSPOD_TOKEN}
+    }
+}
+*.{DOMAIN_NAME}, {DOMAIN_NAME} {
+    encode zstd gzip
+	import dns_provider
+    header {
+        Strict-Transport-Security max-age=31536000;
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy no-referrer-when-downgrade
+    }
+}
+</code></pre><h4 id="dockerfile">Dockerfile</h4><pre><code class="language-dockerfile">FROM caddy:2-builder-alpine AS builder
+ENV GOPROXY "https://goproxy.cn,direct"
+RUN xcaddy build \
+    --with github.com/caddy-dns/dnspod
+
+FROM caddy:2-alpine
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+</code></pre><h4 id="env">.env</h4><pre><code class="language-ini">MYSQL_USERNAME=ghost
+MYSQL_PASSWORD=ghost_password
+MYSQL_DATABASE=ghost
+MYSQL_ROOT_PASSWORD=root_password
+
+SMTP_HOST={SMTP_SERVER}
+SMTP_PORT={SMTP_PORT}
+SMTP_USERNAME={SMTP_USERNAME}
+SMTP_PASSWORD={SMTP_PASSWORD}
+</code></pre><h4 id="composeyaml">compose.yaml</h4><pre><code class="language-yaml">services:
+  caddy:
+    image: caddy:2-alpine
+    # build: caddy
+    restart: unless-stopped
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /opt/ghost/caddy/Caddyfile:/etc/caddy/Caddyfile
+
+  ghost:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    container_name: ghost
+    volumes:
+      - /opt/ghost/ghost/data:/var/lib/ghost/content
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: db
+      database__connection__database: ${MYSQL_DATABASE}
+      database__connection__user: ${MYSQL_USERNAME}
+      database__connection__password: ${MYSQL_PASSWORD}
+      mail__transport: SMTP
+      mail__options__host: ${SMTP_HOST}
+      mail__options__port: ${SMTP_PORT}
+      mail__options__auth__user: ${SMTP_USERNAME}
+      mail__options__auth__pass: ${SMTP_PASSWORD}
+	  mail__from: Notification &lt;{MAIL_ADDRESS}&gt;
+      url: https://{DOMAIN_NAME}
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: db
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - /opt/ghost/db:/var/lib/mysql
+
+</code></pre><h4 id="%E5%90%AF%E5%8A%A8%E5%8F%8A%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1">启动及更新服务</h4><pre><code class="language-shell"># 启动
+docker compose up -d
+
+# Ghost 升级
+docker compose down
+docker compose pull
+docker compose up -d
+</code></pre><h3 id="%E5%88%9D%E8%A7%81-ghost">初见 Ghost</h3><p>输入 <code>compose.yaml</code> 文件中定义的域名，即可看到 Ghost 的首页</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/09/ghost-index.jpeg" class="kg-image" alt loading="lazy" width="2000" height="1339" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/09/ghost-index.jpeg 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/09/ghost-index.jpeg 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/09/ghost-index.jpeg 1600w, http://192.168.100.6:2368/content/images/size/w2400/2022/09/ghost-index.jpeg 2400w" sizes="(min-width: 720px) 720px"></figure><p>在域名后面加上 <code>/ghost</code> 进入管理的初始化界面，填入一些基本信息完成配置。（可放心填写这些信息后面可随时修改）</p><figure class="kg-card kg-image-card"><img src="http://192.168.100.6:2368/content/images/2022/09/ghost-initial.jpeg" class="kg-image" alt loading="lazy" width="2000" height="1339" srcset="http://192.168.100.6:2368/content/images/size/w600/2022/09/ghost-initial.jpeg 600w, http://192.168.100.6:2368/content/images/size/w1000/2022/09/ghost-initial.jpeg 1000w, http://192.168.100.6:2368/content/images/size/w1600/2022/09/ghost-initial.jpeg 1600w, http://192.168.100.6:2368/content/images/size/w2400/2022/09/ghost-initial.jpeg 2400w" sizes="(min-width: 720px) 720px"></figure><p>现在就可以开始码字了 🎉</p><hr><h2 id="%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</h2><ol><li><a href="https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/?ref=undefapp.com">Building a Caddy container stack for easy HTTPS with Docker and Ghost</a></li></ol>
+        </div>
+
+
+    </article>
+
+    
+    <section class="gh-comments gh-canvas">
+<div id="disqus_thread"></div>
+    </section>
+
+        
+<section class="related-posts gh-canvas">
+
+    <h3 class="related-title">You might also like...</h3>
+
+    <div class="related-feed">
+
+        <article class="post tag-selfhost tag-docker tag-software tag-nas featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1646217120680-735b95df956b?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxSZXN0cmljdGVkJTIwYWNjZXNzfGVufDB8fHx8MTcyNTk0MjE1MXww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="FreshRSS 解决 sspai 图片防盗链问题" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">FreshRSS 解决 sspai 图片防盗链问题</a>
+                </h2>
+                <time class="post-meta" datetime="2024-09-10">Sep 10, 2024</time>
+            </header>
+
+        </article>
+
+
+        <article class="post tag-multimedia tag-selfhost tag-plex featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1589261820052-f9b9075c186c?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDI2fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3MzA1ODU2MQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-07">Jan 7, 2023</time>
+            </header>
+
+        </article>
+
+
+        <article class="post tag-multimedia tag-selfhost tag-docker featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-05">Jan 5, 2023</time>
+            </header>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+</main>
+</div>
+
+    </div>
+
+    <footer class="gh-foot no-menu gh-outer">
+        <div class="gh-foot-inner gh-inner">
+            <div class="gh-copyright">
+                未定义应用 | Undefined APP © 2026
+            </div>
+            <div class="gh-powered-by">
+		    <a href="https://beian.miit.gov.cn/" target="_blank">备案号：</a>
+		    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2022020576号-1</a>&nbsp;|&nbsp;
+			<a class="beian" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702003004">川公网安备 51010702003004号</a>&nbsp;|&nbsp;
+                <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/assets/built/main.min.js?v=ce5cdda17e"></script>
+<style type="text/css">
+	.beian::before {
+		content: "";
+		padding: 0 20px 0 0;
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+		background: url("/content/images/beian.png");
+		background-size: cover;
+	}
+</style>
+
+<!-- prism.js -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuMm1z2JLJG6XVU7C/mR+E7xBUqCivykuhlzfqxXBXbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js" integrity="sha512-Uw06iFFf9hwoN77+kPl/1DZL66tKsvZg6EWm7n6QxInyptVuycfrO52hATXDRozk7KWeXnrSueiglILct8IkkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- toc -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.js" integrity="sha512-BZUSsJAPNtkd+kdY/bD7hvQKZ5zlgWt++KGy/Pa/5uEJNgs0jZ6JaX6MuclRUanowuxmhb5S3LRPEa3QmrUVfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    tocbot.init({
+  		tocSelector: '.gh-toc',
+  		contentSelector: '.gh-content',
+  		headingSelector: 'h1, h2, h3, h4',
+        collapseDepth: 6,
+  		hasInnerContainers: true,
+	});
+</script>
+
+<!-- open external links in a new tab -->
+<script type="text/javascript">
+$(document).ready(function() { 
+    $(".gh-content a").each(function(){
+        if(this.href.indexOf(window.location.host) == -1) {
+            $(this).attr("target", "_blank");
+        }
+    })
+});
+</script>
+
+<!-- google translator -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4JYSH5XC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T4JYSH5XC4');
+</script>
+
+<!-- disqus -->
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{url absolute="true"}}";
+        this.page.identifier = "ghost-{{comment_id}}"
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://undefapp.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</body>
+</html>
