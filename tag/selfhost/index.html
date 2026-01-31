@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Selfhost - 未定义应用 | Undefined APP</title>
-    <link rel="stylesheet" href="/assets/built/screen.css?v=7ad8db8549">
+    <link rel="stylesheet" href="/assets/built/screen.css?v=a7559780cf">
 
     <link rel="icon" href="https://undefapp.com/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
     <link rel="canonical" href="https://undefapp.com/tag/selfhost/">
@@ -53,8 +53,8 @@
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="65d9552fff37511137714deaec" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://undefapp.com/" data-locale="zh" crossorigin="anonymous"></script>
     
     <link href="https://undefapp.com/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=7ad8db8549"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=7ad8db8549">
+    <script defer src="/public/cards.min.js?v=a7559780cf"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a7559780cf">
     <!-- prism.js -->
 <!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -66,11 +66,11 @@
 <!--
 <link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
 -->
-  <!-- Waline -->
+  <!-- Waline 
   <link
     rel="stylesheet"
     href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-  />
+  />-->
   <!-- Waline -->
 
 <style type="text/css">
@@ -484,7 +484,7 @@ Floccus (Homepage | Github) 是一个全平台的跨浏览器跨设备的书签�
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous">
 </script>
-<script src="/assets/built/main.min.js?v=7ad8db8549"></script>
+<script src="/assets/built/main.min.js?v=a7559780cf"></script>
 
 <!-- prism.js -->
 <!--
@@ -529,7 +529,7 @@ function googleTranslateElementInit() {
   gtag('config', 'G-T4JYSH5XC4');
 </script>
 
-<!-- waline -->
+<!-- waline 
   <script type="module">
     import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
@@ -538,6 +538,25 @@ function googleTranslateElementInit() {
       serverURL: 'https://comments.undefapp.com',
     });
   </script>
+-->
+
+<script src="https://unpkg.com/cwd-widget@0.0.x/dist/cwd.js"></script>
+<script>
+	const comments = new CWDComments({
+		el: '#comments',
+		apiBaseUrl: 'https://https://cwd-api.sbugzu.workers.dev',
+	});
+	comments.mount();
+
+	// 或者
+	// document.addEventListener('DOMContentLoaded', () => {
+	// 	const comments = new window.CWDComments({
+	// 		el: '#comments',
+	// 		apiBaseUrl: 'https://your-api.example.com',
+	// 	});
+	// 	comments.mount();
+	// });
+</script>
 
 <script type="text/javascript">
     tocbot.init({

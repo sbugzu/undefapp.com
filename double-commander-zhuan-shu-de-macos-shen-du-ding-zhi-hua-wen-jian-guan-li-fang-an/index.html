@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Double Commander 专属的 macOS 深度定制化文件管理方案</title>
-    <link rel="stylesheet" href="/assets/built/screen.css?v=7ad8db8549">
+    <link rel="stylesheet" href="/assets/built/screen.css?v=a7559780cf">
 
     <link rel="icon" href="https://undefapp.com/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
     <link rel="canonical" href="https://undefapp.com/double-commander-zhuan-shu-de-macos-shen-du-ding-zhi-hua-wen-jian-guan-li-fang-an/">
@@ -29,7 +29,7 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
     <meta property="og:url" content="https://undefapp.com/double-commander-zhuan-shu-de-macos-shen-du-ding-zhi-hua-wen-jian-guan-li-fang-an/">
     <meta property="og:image" content="https://images.unsplash.com/photo-1544396821-4dd40b938ad3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGZvbGRlcnxlbnwwfHx8fDE3Njc4NTk3NTN8MA&amp;ixlib&#x3D;rb-4.1.0&amp;q&#x3D;80&amp;w&#x3D;2000">
     <meta property="article:published_time" content="2026-01-08T08:07:05.000Z">
-    <meta property="article:modified_time" content="2026-01-08T10:35:27.000Z">
+    <meta property="article:modified_time" content="2026-01-13T09:48:01.000Z">
     <meta property="article:tag" content="Software">
     <meta property="article:tag" content="macOS">
     
@@ -80,7 +80,7 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
     "headline": "Double Commander 专属的 macOS 深度定制化文件管理方案",
     "url": "https://undefapp.com/double-commander-zhuan-shu-de-macos-shen-du-ding-zhi-hua-wen-jian-guan-li-fang-an/",
     "datePublished": "2026-01-08T08:07:05.000Z",
-    "dateModified": "2026-01-08T10:35:27.000Z",
+    "dateModified": "2026-01-13T09:48:01.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDh8fGZvbGRlcnxlbnwwfHx8fDE3Njc4NTk3NTN8MA&ixlib=rb-4.1.0&q=80&w=2000",
@@ -99,8 +99,8 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="65d9552fff37511137714deaec" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://undefapp.com/" data-locale="zh" crossorigin="anonymous"></script>
     
     <link href="https://undefapp.com/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=7ad8db8549"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=7ad8db8549">
+    <script defer src="/public/cards.min.js?v=a7559780cf"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a7559780cf">
     <!-- prism.js -->
 <!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -112,11 +112,11 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
 <!--
 <link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
 -->
-  <!-- Waline -->
+  <!-- Waline 
   <link
     rel="stylesheet"
     href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-  />
+  />-->
   <!-- Waline -->
 
 <style type="text/css">
@@ -257,11 +257,11 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
 
         <div class="gh-content gh-canvas">
             <aside class="gh-sidebar"><div class="gh-toc"></div></aside> 
-            <h2 id="%E8%83%8C%E6%99%AF">背景</h2><p>在 macOS 上，文件管理器的选择似乎总是绕不开那几个大名鼎鼎的付费软件。我曾是 ForkLift 的长期用户，但随着版本迭代，我开始对这种“每个大版本重新买断”且乏善可陈的升级内容感到疲倦。</p><p>对于一个每天都要打交道的基础工具，我开始思考：<strong>是否有一个足够强大、能完全由自己掌控，且不再受制于商业授权的方案？</strong> 好吧，不得不承认我有点隐私癖。</p><p>于是，我回到了开源世界，重新发现了 <strong>Double Commander (DC)</strong>。</p><p>Double Commander 是一款跨平台的双面板文件管理器。很多人把它当作 Total Commander 的开源替代品。（插播：为 TC 点赞，过去以及现在在 Windows 电脑上都长期存在的软件，文件操作效率的 No.1）关于 DC 我觉得它的核心价值在于：</p><ul><li><strong>开源且完全免费</strong>：你拥有对工具的绝对掌控权，无需担心订阅过期或授权限制。</li><li><strong>跨平台一致性</strong>：如果你在不同系统间切换，它可以提供完全一致的操作逻辑。</li><li><strong>深度的可定制性</strong>：它不是一个“喂到你嘴里”的成品，而是一个可以随手调整的“效率框架”。</li></ul><p>虽然 DC 在 macOS 上的默认 UI 略显简陋和 macOS 的操作习惯差异很大，但只要经过合理的“装修”，它的生产效率直接爆表。虽然在界面和体验上和商用软件还是有差距的，但是日常使用完全没问题。</p><h2 id="%E5%AE%9A%E5%88%B6%E6%8C%87%E5%8D%97%EF%BC%9A%E6%89%93%E9%80%A0-macos-%E5%8E%9F%E7%94%9F%E6%84%9F">定制指南：打造 macOS 原生感</h2><h3 id="%E6%88%AA%E5%9B%BE">截图</h3><h4 id="%E5%AE%9A%E5%88%B6%E5%89%8D%EF%BC%88%E7%BD%91%E4%B8%8A%E6%89%BE%E7%9A%84%E5%9B%BE%EF%BC%8C%E5%BF%98%E6%88%AA%E5%9B%BE%E4%BA%86%EF%BC%89">定制前（网上找的图，忘截图了）</h4><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-before.png" class="kg-image" alt="" loading="lazy" width="1138" height="697" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-before.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-before.png 1000w, https://undefapp.com/content/images/2026/01/DoubleCmder-before.png 1138w" sizes="(min-width: 720px) 720px"></figure><h4 id="%E5%AE%9A%E5%88%B6%E5%90%8E">定制后</h4><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-after.png" class="kg-image" alt="" loading="lazy" width="2000" height="1264" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-after.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-after.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-after.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-after.png 2168w" sizes="(min-width: 720px) 720px"></figure><h2 id="%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE">具体配置</h2><p>大多数配置按图片调整就可以，个别特殊的会单独说明</p><h3 id="%E8%A7%86%E8%A7%89%E5%87%8F%E6%B3%95%EF%BC%9A%E6%89%BE%E5%9B%9E%E7%AE%80%E6%B4%81%E6%84%9F">视觉减法：找回简洁感</h3><p>在 <code>Options -&gt; Layout</code> 中，我隐藏了大部分不必要的工具栏，只保留最核心的双面板，让视野回归文件本身。也可按自己习惯调整</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Layout.png" class="kg-image" alt="" loading="lazy" width="1602" height="1276" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Layout.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Layout.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Layout.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Layout.png 1602w" sizes="(min-width: 720px) 720px"></figure><p>对自定义列再进行一下微调，主要调整后缀直接跟在文件名后：</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Columns.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Columns.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Columns.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Columns.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Columns.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E9%A2%9C%E8%89%B2%E6%96%B9%E6%A1%88%EF%BC%9A%E6%B6%88%E9%99%A4%E2%80%9C%E8%B7%A8%E5%B9%B3%E5%8F%B0%E2%80%9D%E7%9A%84%E8%BF%9D%E5%92%8C%E6%84%9F">颜色方案：消除“跨平台”的违和感</h3><p>macOS 系统色值调整了底色和高亮色，使其在视觉上与系统环境更加融合。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Colors.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Colors.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Colors.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Colors.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Colors.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%A0%B8%E5%BF%83%E4%BA%A4%E4%BA%92%EF%BC%9A%E9%87%8D%E5%A1%91%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%80%BB%E8%BE%91">核心交互：重塑快捷键逻辑</h3><p>为了保持在 macOS 下的肌肉记忆，我针对性地修改了几个关键快捷键：</p><blockquote>cm_EditPath <code>Shift+Cmd+G</code> ：快速修改路径<br>cm_Delete <code>Cmd+BkSp</code> ：符合 Finder 的删除<br>cm_ChangeDirToParent <code>Cmd+Up</code> ：向上进入父目录<br>cm_Open <code>Cmd+Down</code> ：向下打开目录或者文件</blockquote><p>快捷键配置时，先在 Filter 过滤中过滤出需要修改的快捷键，再点击右下的 Add hotkey 增加快捷键进行增加。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Keys.png" class="kg-image" alt="" loading="lazy" width="1602" height="1276" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Keys.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Keys.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Keys.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Keys.png 1602w" sizes="(min-width: 720px) 720px"></figure><p><strong>特别细节：关于 Enter 键的思考</strong> 在 macOS 中，回车键默认是“重命名”，而在 DC 中默认是“打开”。因为 <code>Enter</code> 的特殊性无法直接修改，只能通过修改配置文件：</p><blockquote>路径：<code>/Users/&lt;username&gt;/Library/Preferences/doublecmd/shortcuts.csf</code></blockquote><p>搜索 <code>cm_RenameOnly</code>，手动增加 <code>Enter</code> 映射，重启。<br><strong>已知问题：</strong> 在使用 Enter 进行重命名时，即使勾选了只选择文件名，还是会选中后缀。原快捷键 <code>F2</code> 和 <code>Shift+F6</code> 是没有这个问题的。</p><pre><code class="language-xml">&lt;Hotkey&gt;
+            <h2 id="%E8%83%8C%E6%99%AF">背景</h2><p>在 macOS 上，文件管理器的选择似乎总是绕不开那几个大名鼎鼎的付费软件。我曾是 ForkLift 的长期用户，但随着版本迭代，我开始对这种“每个大版本重新买断”且乏善可陈的升级内容感到疲倦。</p><p>对于一个每天都要打交道的基础工具，我开始思考：<strong>是否有一个足够强大、能完全由自己掌控，且不再受制于商业授权的方案？</strong> 好吧，不得不承认我有点隐私癖。</p><p>于是，我回到了开源世界，重新发现了 <strong>Double Commander (DC)</strong>。</p><p>Double Commander 是一款跨平台的双面板文件管理器。很多人把它当作 Total Commander 的开源替代品。（插播：为 TC 点赞，过去以及现在在 Windows 电脑上都长期存在的软件，文件操作效率的 No.1）关于 DC 我觉得它的核心价值在于：</p><ul><li><strong>开源且完全免费</strong>：你拥有对工具的绝对掌控权，无需担心订阅过期或授权限制。</li><li><strong>跨平台一致性</strong>：如果你在不同系统间切换，它可以提供完全一致的操作逻辑。</li><li><strong>深度的可定制性</strong>：它不是一个“喂到你嘴里”的成品，而是一个可以随手调整的“效率框架”。</li></ul><p>虽然 DC 在 macOS 上的默认 UI 略显简陋和 macOS 的操作习惯差异很大，但只要经过合理的“装修”，它的生产效率直接爆表。虽然在界面和体验上和商用软件还是有差距的，但是日常使用完全没问题。</p><h2 id="%E5%AE%9A%E5%88%B6%E6%8C%87%E5%8D%97%EF%BC%9A%E6%89%93%E9%80%A0-macos-%E5%8E%9F%E7%94%9F%E6%84%9F">定制指南：打造 macOS 原生感</h2><h3 id="%E6%88%AA%E5%9B%BE">截图</h3><h4 id="%E5%AE%9A%E5%88%B6%E5%89%8D%EF%BC%88%E7%BD%91%E4%B8%8A%E6%89%BE%E7%9A%84%E5%9B%BE%EF%BC%8C%E5%BF%98%E6%88%AA%E5%9B%BE%E4%BA%86%EF%BC%89">定制前（网上找的图，忘截图了）</h4><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-before.png" class="kg-image" alt="" loading="lazy" width="1138" height="697" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-before.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-before.png 1000w, https://undefapp.com/content/images/2026/01/DoubleCmder-before.png 1138w" sizes="(min-width: 720px) 720px"></figure><h4 id="%E5%AE%9A%E5%88%B6%E5%90%8E">定制后</h4><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-after.png" class="kg-image" alt="" loading="lazy" width="2000" height="1264" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-after.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-after.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-after.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-after.png 2168w" sizes="(min-width: 720px) 720px"></figure><h2 id="%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE">具体配置</h2><p>大多数配置按图片调整就可以，个别特殊的会单独说明</p><h3 id="%E8%A7%86%E8%A7%89%E5%87%8F%E6%B3%95%EF%BC%9A%E6%89%BE%E5%9B%9E%E7%AE%80%E6%B4%81%E6%84%9F">视觉减法：找回简洁感</h3><p>在 <code>Options -&gt; Layout</code> 中，我隐藏了大部分不必要的工具栏，只保留最核心的双面板，让视野回归文件本身。也可按自己习惯调整</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Layout.png" class="kg-image" alt="" loading="lazy" width="1602" height="1276" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Layout.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Layout.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Layout.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Layout.png 1602w" sizes="(min-width: 720px) 720px"></figure><p>对自定义列再进行一下微调，主要调整后缀直接跟在文件名后：</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Columns.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Columns.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Columns.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Columns.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Columns.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E9%A2%9C%E8%89%B2%E6%96%B9%E6%A1%88%EF%BC%9A%E6%B6%88%E9%99%A4%E2%80%9C%E8%B7%A8%E5%B9%B3%E5%8F%B0%E2%80%9D%E7%9A%84%E8%BF%9D%E5%92%8C%E6%84%9F">颜色方案：消除“跨平台”的违和感</h3><p>macOS 系统色值调整了底色和高亮色，使其在视觉上与系统环境更加融合。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Colors.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Colors.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Colors.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Colors.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Colors.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%A0%B8%E5%BF%83%E4%BA%A4%E4%BA%92%EF%BC%9A%E9%87%8D%E5%A1%91%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%80%BB%E8%BE%91">核心交互：重塑快捷键逻辑</h3><p>为了保持在 macOS 下的肌肉记忆，我针对性地修改了几个关键快捷键：</p><blockquote>cm_EditPath <code>Shift+Cmd+G</code> ：快速修改路径<br>cm_Delete <code>Cmd+BkSp</code> ：符合 Finder 的删除<br>cm_MakeDir <code>Shift+Cmd+N</code> : 新建文件夹<br>cm_FileProperties <code>Cmd+I</code> : 查看文件属性<br>cm_ChangeDirToParent <code>Cmd+Up</code> ：向上进入父目录<br>cm_Open <code>Cmd+Down</code> ：向下打开目录或者文件</blockquote><p>快捷键配置时，先在 Filter 过滤中过滤出需要修改的快捷键，再点击右下的 Add hotkey 增加快捷键进行增加。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-Keys.png" class="kg-image" alt="" loading="lazy" width="1602" height="1276" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-Keys.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-Keys.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-Keys.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-Keys.png 1602w" sizes="(min-width: 720px) 720px"></figure><p><strong>特别细节：关于 Enter 键的思考</strong> 在 macOS 中，回车键默认是“重命名”，而在 DC 中默认是“打开”。因为 <code>Enter</code> 的特殊性无法直接修改，只能通过修改配置文件：</p><blockquote>路径：<code>/Users/&lt;username&gt;/Library/Preferences/doublecmd/shortcuts.csf</code></blockquote><p>搜索 <code>cm_RenameOnly</code>，手动增加 <code>Enter</code> 映射，重启。</p><pre><code class="language-xml">&lt;Hotkey&gt;
   &lt;Shortcut&gt;Enter&lt;/Shortcut&gt;
   &lt;Command&gt;cm_RenameOnly&lt;/Command&gt;
 &lt;/Hotkey&gt;
-</code></pre><p>文件操作上也进行了一些微调</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-FileOperations.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-FileOperations.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-FileOperations.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-FileOperations.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-FileOperations.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%9C%80%E5%90%8E%E6%8B%BC%E5%9B%BE%EF%BC%9Aquick-look">最后拼图：Quick Look</h3><p>空格键预览是 macOS 体验的灵魂。在 DC 中，我通过 <code>Insert new button</code> 插入了一个自定义按钮，调用系统预览命令，并将其快捷键绑定为 <strong>Space</strong>。至此，DC 终于拥有了丝滑的空格预览功能。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-QuickLook.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-QuickLook.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-QuickLook.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-QuickLook.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-QuickLook.png 2392w" sizes="(min-width: 720px) 720px"></figure><h2 id="%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%8A%98%E8%85%BE%E7%9A%84%E6%84%8F%E4%B9%89">结语：折腾的意义</h2><p>从 ForkLift 转向 Double Commander，看似是省下了一笔订阅费，实则是赢得了一份 <strong>“工具的自由”</strong>。</p><p>开源工具可能需要你花一个下午去配置、去阅读文档、去修改 XML 配置文件，但一旦调试完成，它就是完全属于你的利器。这种掌控感也算是折腾的意义之一吧。</p>
+</code></pre><p><strong>已知问题：</strong> 在使用 Enter 进行重命名时，即使勾选了只选择文件名，还是会选中后缀。原快捷键 <code>F2</code> 和 <code>Shift+F6</code> 是没有这个问题的。</p><p>文件操作上也进行了一些微调</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-FileOperations.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-FileOperations.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-FileOperations.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-FileOperations.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-FileOperations.png 2392w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%9C%80%E5%90%8E%E6%8B%BC%E5%9B%BE%EF%BC%9Aquick-look">最后拼图：Quick Look</h3><p>空格键预览是 macOS 体验的灵魂。在 DC 中，我通过 <code>Insert new button</code> 插入了一个自定义按钮，调用系统预览命令，并将其快捷键绑定为 <strong>Space</strong>。至此，DC 终于拥有了丝滑的空格预览功能。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2026/01/DoubleCmder-QuickLook.png" class="kg-image" alt="" loading="lazy" width="2000" height="1077" srcset="https://undefapp.com/content/images/size/w600/2026/01/DoubleCmder-QuickLook.png 600w, https://undefapp.com/content/images/size/w1000/2026/01/DoubleCmder-QuickLook.png 1000w, https://undefapp.com/content/images/size/w1600/2026/01/DoubleCmder-QuickLook.png 1600w, https://undefapp.com/content/images/2026/01/DoubleCmder-QuickLook.png 2392w" sizes="(min-width: 720px) 720px"></figure><h2 id="%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%8A%98%E8%85%BE%E7%9A%84%E6%84%8F%E4%B9%89">结语：折腾的意义</h2><p>从 ForkLift 转向 Double Commander，看似是省下了一笔订阅费，实则是赢得了一份 <strong>“工具的自由”</strong>。</p><p>开源工具可能需要你花一个下午去配置、去阅读文档、去修改 XML 配置文件，但一旦调试完成，它就是完全属于你的利器。这种掌控感也算是折腾的意义之一吧。</p>
         </div>
 
 
@@ -269,7 +269,7 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
 
 
     <section class="gh-comments gh-canvas">
-	<div id="waline"></div>
+	<div id="comments"></div>
     </section>
 
 
@@ -385,7 +385,7 @@ Double Commander 是一款跨平台的双面板文件管理器。很多人把它
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous">
 </script>
-<script src="/assets/built/main.min.js?v=7ad8db8549"></script>
+<script src="/assets/built/main.min.js?v=a7559780cf"></script>
 
 <!-- prism.js -->
 <!--
@@ -430,7 +430,7 @@ function googleTranslateElementInit() {
   gtag('config', 'G-T4JYSH5XC4');
 </script>
 
-<!-- waline -->
+<!-- waline 
   <script type="module">
     import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
@@ -439,6 +439,25 @@ function googleTranslateElementInit() {
       serverURL: 'https://comments.undefapp.com',
     });
   </script>
+-->
+
+<script src="https://unpkg.com/cwd-widget@0.0.x/dist/cwd.js"></script>
+<script>
+	const comments = new CWDComments({
+		el: '#comments',
+		apiBaseUrl: 'https://https://cwd-api.sbugzu.workers.dev',
+	});
+	comments.mount();
+
+	// 或者
+	// document.addEventListener('DOMContentLoaded', () => {
+	// 	const comments = new window.CWDComments({
+	// 		el: '#comments',
+	// 		apiBaseUrl: 'https://your-api.example.com',
+	// 	});
+	// 	comments.mount();
+	// });
+</script>
 
 <script type="text/javascript">
     tocbot.init({
