@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]</title>
+    <link rel="stylesheet" href="/assets/built/screen.css?v=a7559780cf">
+
+    <link rel="icon" href="https://undefapp.com/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
+    <link rel="canonical" href="https://undefapp.com/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="未定义应用 | Undefined APP">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]">
+    <meta property="og:description" content="更新
+
+【2026-01-07】更新最新的 m3u 自动生成工具
+
+
+介绍
+
+该方案不需要拿到光猫管理员（虽然折腾半天拿到了发现可以不用），也不需要设置 VLAN，因为是双线接入只会多占用一个软路由端口，简单几步配置就能支持 IPTV。
+
+
+限制
+
+因为非常简单所以有一些限制：
+
+ 1. 需要软路由上还有空闲的网口
+ 2. 只在成都电信测试通过，不确定其它区域和运营商都可以。因为是发现本地 IPTV 是不需要拔号，也不需要特定 IP 的，和网上各种复杂教程完全不一样。
+ 3. 本文完全通过无线访问，如果要使用机顶盒，需要再多一个端口桥接，或者 omcproxy 一类的工具，不在本文范围。
+
+
+拓扑情况
+
+
+简单介绍一下拓扑情况，光纤入户通过光猫再到安装 OpenWrt 的软路由，光猫使用桥接通过 OpenWrt 拔号上网（光猫使用路由模式直接拔号也没有影响）。光猫的上网口接入软路由的 WAN（eth0）口，IPTV 接入软路由的">
+    <meta property="og:url" content="https://undefapp.com/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta property="article:published_time" content="2023-01-05T05:07:17.000Z">
+    <meta property="article:modified_time" content="2026-01-07T11:47:49.000Z">
+    <meta property="article:tag" content="Multimedia">
+    <meta property="article:tag" content="Selfhost">
+    <meta property="article:tag" content="Docker">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]">
+    <meta name="twitter:description" content="更新
+
+【2026-01-07】更新最新的 m3u 自动生成工具
+
+
+介绍
+
+该方案不需要拿到光猫管理员（虽然折腾半天拿到了发现可以不用），也不需要设置 VLAN，因为是双线接入只会多占用一个软路由端口，简单几步配置就能支持 IPTV。
+
+
+限制
+
+因为非常简单所以有一些限制：
+
+ 1. 需要软路由上还有空闲的网口
+ 2. 只在成都电信测试通过，不确定其它区域和运营商都可以。因为是发现本地 IPTV 是不需要拔号，也不需要特定 IP 的，和网上各种复杂教程完全不一样。
+ 3. 本文完全通过无线访问，如果要使用机顶盒，需要再多一个端口桥接，或者 omcproxy 一类的工具，不在本文范围。
+
+
+拓扑情况
+
+
+简单介绍一下拓扑情况，光纤入户通过光猫再到安装 OpenWrt 的软路由，光猫使用桥接通过 OpenWrt 拔号上网（光猫使用路由模式直接拔号也没有影响）。光猫的上网口接入软路由的 WAN（eth0）口，IPTV 接入软路由的">
+    <meta name="twitter:url" content="https://undefapp.com/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="bug">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Multimedia, Selfhost, Docker">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "未定义应用 | Undefined APP",
+        "url": "https://undefapp.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://undefapp.com/content/images/size/w256h256/2022/08/android-chrome-192x192.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "bug",
+        "url": "https://undefapp.com/author/bug/",
+        "sameAs": []
+    },
+    "headline": "基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]",
+    "url": "https://undefapp.com/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/",
+    "datePublished": "2023-01-05T05:07:17.000Z",
+    "dateModified": "2026-01-07T11:47:49.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&ixlib=rb-4.0.3&q=80&w=2000",
+        "width": 1200,
+        "height": 800
+    },
+    "keywords": "Multimedia, Selfhost, Docker",
+    "description": "更新\n\n【2026-01-07】更新最新的 m3u 自动生成工具\n\n\n介绍\n\n该方案不需要拿到光猫管理员（虽然折腾半天拿到了发现可以不用），也不需要设置 VLAN，因为是双线接入只会多占用一个软路由端口，简单几步配置就能支持 IPTV。\n\n\n限制\n\n因为非常简单所以有一些限制：\n\n 1. 需要软路由上还有空闲的网口\n 2. 只在成都电信测试通过，不确定其它区域和运营商都可以。因为是发现本地 IPTV 是不需要拔号，也不需要特定 IP 的，和网上各种复杂教程完全不一样。\n 3. 本文完全通过无线访问，如果要使用机顶盒，需要再多一个端口桥接，或者 omcproxy 一类的工具，不在本文范围。\n\n\n拓扑情况\n\n\n简单介绍一下拓扑情况，光纤入户通过光猫再到安装 OpenWrt 的软路由，光猫使用桥接通过 OpenWrt 拔号上网（光猫使用路由模式直接拔号也没有影响）。光猫的上网口接入软路由的 WAN（eth0）口，IPTV 接入软路由的 eth1，后面会进行配置，还有一个 Wifi 作为 AP 让其它设备接入。\n\n影响本次的就是需要软件路由上有个空闲的网口，并接入光猫的 IPTV 口。否则需要",
+    "mainEntityOfPage": "https://undefapp.com/ji-yu-openwrt-quan-wang-zui-jian-shuang-xian-iptv-jie-ru-fang-an-zi-jian-duo-mei-ti-ping-tai/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.130">
+    <link rel="alternate" type="application/rss+xml" title="未定义应用 | Undefined APP" href="https://undefapp.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="65d9552fff37511137714deaec" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://undefapp.com/" data-locale="zh" crossorigin="anonymous"></script>
+    
+    <link href="https://undefapp.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=a7559780cf"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a7559780cf">
+    <!-- prism.js -->
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.bootcdn.net/ajax/libs/prism/1.30.0/prism-gruvbox-dark.min.css" type="text/css" rel="stylesheet" />
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-gruvbox-dark.min.css" integrity="sha512-XZoe1WroNfbcndQJexn+pbMEytiaSYRHDuKjew+Nn0xYSTmB4sfoZnBdqYCrXq2IwAcPZS/sXE5ju/JbppYOsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- Toc -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.css" integrity="sha512-/ANQiHMqpRl+E0zEAd250N21OOmJsYbhiJWY0Y8yG0TII47yZn1+gDNobMlf+h/FTyImprLXYgXbX3bCYyq/vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--
+<link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
+-->
+  <!-- Waline 
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+  />-->
+  <!-- Waline -->
+
+<style type="text/css">
+  
+
+.gh-toc  ol  li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: decimal !important;
+}
+
+.gh-toc  ol {
+    counter-reset: item;
+}
+.gh-toc  li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+}
+.gh-toc a {
+    text-decoration: none;
+}
+ .gh-content {
+    position: relative;
+ }
+.gh-toc > .toc-list {
+    position: relative;
+}
+
+.toc-list {
+    overflow: hidden;
+    list-style: none;
+    padding-left: 1.2rem !important;
+}
+
+@media (min-width: 1300px) {
+     .gh-sidebar {
+        position: absolute; 
+        top: 0;
+        bottom: 0;
+        margin-top: 4vmin;
+        grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
+    }
+   
+    .gh-toc {
+        position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
+        top: 4vmin;
+    }
+}
+
+.gh-toc .is-active-link::before {
+    background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
+} 
+
+</style>
+
+
+<!-- Google translate -->
+<style type="text/css">
+    #google_translate_element div {
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+    }
+    #google_translate_element select {
+        width: 64px;
+        height: 24px;
+        border-radius: 4px;
+    }
+    
+</style>
+</head>
+
+<body class="post-template tag-multimedia tag-selfhost tag-docker is-head-left-logo">
+<div class="site">
+
+    <header id="gh-head" class="gh-head gh-outer">
+        <div class="gh-head-inner">
+            <div class="gh-head-brand">
+                <div class="gh-head-brand-wrapper">
+                    <a class="gh-head-logo" href="https://undefapp.com">
+                            未定义应用 | Undefined APP
+                    </a>
+                </div>
+                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button class="gh-burger" aria-label="Toggle menu"></button>
+            </div>
+
+            <nav class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-blog"><a href="https://undefapp.com/">Blog</a></li>
+    <li class="nav-about"><a href="https://undefapp.com/about/">About</a></li>
+</ul>
+
+            </nav>
+
+            <div class="gh-head-actions">
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="site-content">
+        
+<div class="content-area">
+<main class="site-main">
+
+
+    <article class="post tag-multimedia tag-selfhost tag-docker featured single-post">
+
+        <header class="article-header gh-canvas">
+            <div class="post-meta">
+                <span class="post-meta-item post-meta-date">
+                    <time datetime="2023-01-05">05 Jan 2023</time>
+                </span>
+                    <span class="post-meta-item post-meta-length">5 min read</span>
+                    <span class="post-meta-item post-meta-tags"><a class="post-tag post-tag-multimedia" href="/tag/multimedia/" title="Multimedia">Multimedia</a></span>
+            </div>
+            <h1 class="post-title">基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]</h1>
+                <figure class="post-media kg-width-wide">
+        <img
+            class="post-image"
+            srcset="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;400 400w,
+                    https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750 750w,
+                    https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960 960w,
+                    https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1140 1140w,
+                    https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1920 1920w"
+            sizes="(min-width: 960px) 960px, 92vw"
+            src="https://images.unsplash.com/photo-1501141178950-e7fa06e4adf5?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE5fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3Mjg5NTE5MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960"
+            alt="基于 OpenWrt 全网最简双线 IPTV 接入方案 - 自建多媒体平台 [Update 2026-01-07]"
+            loading="lazy"
+        >
+
+            <figcaption><span style="white-space: pre-wrap;">Photo by </span><a href="https://unsplash.com/@timmossholder?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"><span style="white-space: pre-wrap;">Tim Mossholder</span></a><span style="white-space: pre-wrap;"> / </span><a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"><span style="white-space: pre-wrap;">Unsplash</span></a></figcaption>
+    </figure>
+        </header>
+
+        <div class="gh-content gh-canvas">
+            <aside class="gh-sidebar"><div class="gh-toc"></div></aside> 
+            <h2 id="%E6%9B%B4%E6%96%B0">更新</h2><p>【2026-01-07】<a href="#update-20260107" rel="noreferrer">更新最新的 m3u 自动生成工具</a></p><h2 id="%E4%BB%8B%E7%BB%8D">介绍</h2><p>该方案不需要拿到光猫管理员（虽然折腾半天拿到了发现可以不用），也不需要设置 VLAN，因为是双线接入只会多占用一个软路由端口，简单几步配置就能支持 IPTV。</p><h3 id="%E9%99%90%E5%88%B6">限制</h3><p>因为非常简单所以有一些限制：</p><ol><li>需要软路由上还有空闲的网口</li><li>只在成都电信测试通过，不确定其它区域和运营商都可以。因为是发现本地 IPTV 是不需要拔号，也不需要特定 IP 的，和网上各种复杂教程完全不一样。</li><li>本文完全通过无线访问，如果要使用机顶盒，需要再多一个端口桥接，或者 omcproxy 一类的工具，不在本文范围。</li></ol><h3 id="%E6%8B%93%E6%89%91%E6%83%85%E5%86%B5">拓扑情况</h3><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/network-topology.excalidraw.png" class="kg-image" alt="" loading="lazy" width="1284" height="1261" srcset="https://undefapp.com/content/images/size/w600/2023/01/network-topology.excalidraw.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/network-topology.excalidraw.png 1000w, https://undefapp.com/content/images/2023/01/network-topology.excalidraw.png 1284w" sizes="(min-width: 720px) 720px"></figure><p><br>简单介绍一下拓扑情况，光纤入户通过光猫再到安装 OpenWrt 的软路由，光猫使用桥接通过 OpenWrt 拔号上网（光猫使用路由模式直接拔号也没有影响）。光猫的上网口接入软路由的 WAN（eth0）口，IPTV 接入软路由的 eth1，后面会进行配置，还有一个 Wifi 作为 AP 让其它设备接入。</p><p>影响本次的就是需要软件路由上有个空闲的网口，并接入光猫的 IPTV 口。否则需要单线复用的方式，获取光猫管理员创建 VLAN，共用软路由的 WAN 口，这种复杂的方式本文不会涉及。</p><p>如果不符合上述条件的，可以退出本文搜索其它更合适的方式。</p><h2 id="%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4">操作步骤</h2><h3 id="%E9%87%8A%E6%94%BE%E7%BD%91%E5%8F%A3">释放网口</h3><p>在 <code>网络 -&gt; 接口 </code> 中找到 <code>LAN</code> 编辑，在物理设置里面把用于 IPTV 的物理端口 <code>eth1</code>取消勾选。后面括号中应该是 <code>lan</code>，因为是后面补截的屏所以这里已经是 <code>IPTV</code> 。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-lan.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-lan.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-lan.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-lan.png 1600w, https://undefapp.com/content/images/2023/01/iptv-lan.png 2364w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%96%B0%E5%BB%BA-iptv-%E6%8E%A5%E5%8F%A3">新建 IPTV 接口</h3><p>在 <code>网络 -&gt; 接口</code> 中创建新接口，命名 <code>IPTV</code>（其它名字也可以方便记忆），协议选择<code>静态 IP</code>。</p><p>如图配置 IP 地址，不要和你当前路由同一网段就行，图中的 <code>192.168.168.123</code> 是随便设置的一个 IP。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-interface-ip.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-interface-ip.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-interface-ip.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-interface-ip.png 1600w, https://undefapp.com/content/images/2023/01/iptv-interface-ip.png 2364w" sizes="(min-width: 720px) 720px"></figure><p>在<code>高级设置</code>里面把跃点数设置为 <code>50</code> ，<code>WAN</code>口设置的 <code>20</code>。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-interface-metric.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-interface-metric.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-interface-metric.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-interface-metric.png 1600w, https://undefapp.com/content/images/2023/01/iptv-interface-metric.png 2364w" sizes="(min-width: 720px) 720px"></figure><p>在<code>物理设置</code> 里面选择刚刚释放用于 IPTV 的 <code>eth1</code>。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-interface-physical.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-interface-physical.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-interface-physical.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-interface-physical.png 1600w, https://undefapp.com/content/images/2023/01/iptv-interface-physical.png 2364w" sizes="(min-width: 720px) 720px"></figure><p>最后在 <code>防火墙</code> 里新建一个 <code>iptv</code> ，保存并应用</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-interface-firewall.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-interface-firewall.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-interface-firewall.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-interface-firewall.png 1600w, https://undefapp.com/content/images/2023/01/iptv-interface-firewall.png 2364w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E5%90%AF%E7%94%A8-udpxy">启用 udpxy</h3><p>因为使用的 OpenWrt 版本中已经集成 <code>udpxy</code>，所以可以直接使用，如果未集成需要到 <code>系统 -&gt; 软件</code> 中进行安装。<br>进入 <code>服务 -&gt; udpxy</code>，启用并按图中进行配置，<code>BindIP</code> 为 OpenWrt 软路由 IP 或者 <code>0.0.0.0</code> 也可以，<code>SourceIP</code> 使用上面的 IPTV 的接口<code>eth1</code>，保存并应用。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-udpxy.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-udpxy.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-udpxy.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-udpxy.png 1600w, https://undefapp.com/content/images/2023/01/iptv-udpxy.png 2364w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E7%84%B6%E5%90%8E%E5%B0%B1%E6%B2%A1%E6%9C%89%E7%84%B6%E5%90%8E%E4%BA%86">然后就没有然后了</h3><h2 id="%E9%AA%8C%E8%AF%81">验证</h2><h3 id="%E9%AA%8C%E8%AF%81-udpxy">验证 udpxy</h3><p>输入 <code>http://&lt;router-ip&gt;:4022/status</code> 如果看到如下界面，说明配置成功。<code>router-ip</code> 为软路由的 ip 地址，也是图中接受客户端的地址。组播地址 <code>192.168.168.123</code> 即为上面 IPTV 接口配置的静态 IP。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-udpxy-status.png" class="kg-image" alt="" loading="lazy" width="2000" height="1401" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-udpxy-status.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-udpxy-status.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-udpxy-status.png 1600w, https://undefapp.com/content/images/2023/01/iptv-udpxy-status.png 2364w" sizes="(min-width: 720px) 720px"></figure><h3 id="%E6%92%AD%E6%94%BE%E9%AA%8C%E8%AF%81">播放验证</h3><p><s>可以从 </s><a href="https://github.com/imDazui/Tvlist-awesome-m3u-m3u8?ref=undefapp.com"><s>https://github.com/imDazui/Tvlist-awesome-m3u-m3u8</s></a><s> 找到很多直播源，根据区域下载 </s><a href="https://raw.githubusercontent.com/imDazui/Tvlist-awesome-m3u-m3u8/master/m3u/%E5%9B%9B%E5%B7%9D%E6%88%90%E9%83%BD%E7%94%B5%E4%BF%A1udp%E7%BB%84%E6%92%AD.m3u?ref=undefapp.com"><s>四川成都电信udp组播直播源.m3u8</s></a><s>，从中找到任意一个地址，如 CCTV-1 的 <code>http://0.0.0.0:0000/udp/239.93.0.184:5140</code> 修改为 <code>http://&lt;router-ip&gt;:4022/udp/239.93.0.184:5140</code>，使用播放器打开该 URL 即可正常播放。<br>部分 <code>m3u</code> 文件中的地址是 <code>igmp://239.93.1.23:6000</code> ，只需要把协议去掉在前面加上 <code>http://&lt;router-ip&gt;:4022/udp</code> 就可以，最终播放地址是 <code>http://&lt;router-ip&gt;:4022/udp/239.93.1.23:6000</code>。</s></p>
+<!--kg-card-begin: html-->
+<div id="update-20260107"></div>
+<!--kg-card-end: html-->
+<p>【Update 2026-01-07】找这个 <a href="https://github.com/suzukua/iptv-cd-telecom?ref=undefapp.com" rel="noreferrer">iptv-cd-telecom</a> 项目可以直接生成 m3u，格式如下：<a href="https://iptv.zsdc.eu.org/udpxy/192.168.100.2:4022?ref=undefapp.com">https://iptv.zsdc.eu.org/udpxy/&lt;router-ip&gt;:4022</a>，只需要把后面换成自己的 router-ip 就能生成最新的 m3u 文件，带台标，节目表，支持回放。更多参数可以看项目说明。</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-player-done.png" class="kg-image" alt="" loading="lazy" width="1072" height="652" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-player-done.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-player-done.png 1000w, https://undefapp.com/content/images/2023/01/iptv-player-done.png 1072w" sizes="(min-width: 720px) 720px"></figure><p><br>单个测试成功之后，就可以批量修改替换 <code>m3u</code> 中的地址，使用播放器加载修改后的文件。</p><h3 id="%E6%B5%81%E9%87%8F%E6%9F%A5%E7%9C%8B%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89">流量查看（可选）</h3><p>如果 OpenWrt 上有安装 netdata，在对应网口上也能看到在播放 IPTV 的时候，流量都是通过 <code>eth1</code> </p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2023/01/iptv-monitor-1.png" class="kg-image" alt="" loading="lazy" width="1882" height="1012" srcset="https://undefapp.com/content/images/size/w600/2023/01/iptv-monitor-1.png 600w, https://undefapp.com/content/images/size/w1000/2023/01/iptv-monitor-1.png 1000w, https://undefapp.com/content/images/size/w1600/2023/01/iptv-monitor-1.png 1600w, https://undefapp.com/content/images/2023/01/iptv-monitor-1.png 1882w" sizes="(min-width: 720px) 720px"></figure><h2 id="%E6%8C%96%E5%9D%91">挖坑</h2><p>个人主要使用 Kodi 来播放 IPTV，后面补一篇教程。</p><p><s>Plex 通过 xteve 应该也能支持，测试后可以再补一篇。</s> 已填坑<a href="https://undefapp.com/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台</a></p>
+        </div>
+
+
+    </article>
+
+
+    <section class="gh-comments gh-canvas">
+	<div id="comments"></div>
+    </section>
+
+
+        
+<section class="related-posts gh-canvas">
+
+    <h3 class="related-title">You might also like...</h3>
+
+    <div class="related-feed">
+
+        <article class="post tag-multimedia tag-selfhost tag-plex tag-hash-import-2026-01-04-13-14 featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1589261820052-f9b9075c186c?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDI2fHx0ZWxldmlzaW9ufGVufDB8fHx8MTY3MzA1ODU2MQ&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/plex-xteve-jia-zai-iptv-zhi-bo-zi-jian-duo-mei-ti-ping-tai/">Plex + xTeVe 加载 IPTV 直播 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-07">07 Jan 2023</time>
+            </header>
+
+        </article>
+
+
+        <article class="post tag-multimedia tag-nas tag-docker tag-selfhost tag-hash-import-2026-01-04-13-14 featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/clouddrive2-gong-ce-ban-ben-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1604005366359-2f8f2a044336?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDE1fHxuZXR3b3JrJTIwc3RvcmFnZXxlbnwwfHx8fDE2NzI3MjQ5ODE&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="CloudDrive2 公测版本 - 自建多媒体平台" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/clouddrive2-gong-ce-ban-ben-zi-ji-dong-shou-feng-yi-zu-shi-xi-lie/">CloudDrive2 公测版本 - 自建多媒体平台</a>
+                </h2>
+                <time class="post-meta" datetime="2023-01-03">03 Jan 2023</time>
+            </header>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+</main>
+</div>
+
+    </div>
+
+    <footer class="gh-foot no-menu gh-outer">
+        <div class="gh-foot-inner gh-inner">
+            <div class="gh-copyright">
+                未定义应用 | Undefined APP © 2026
+            </div>
+            <div class="gh-powered-by">
+	        <a href="https://beian.miit.gov.cn/" target="_blank">备案号：</a>
+	        <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2022020576号-1</a>&nbsp;|&nbsp;
+		<a class="beian" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702003004">川公网安备 51010702003004号
+</a>&nbsp;|&nbsp;
+                <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+</script>
+<script src="/assets/built/main.min.js?v=a7559780cf"></script>
+
+<!-- prism.js -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuMm1z2JLJG6XVU7C/mR+E7xBUqCivykuhlzfqxXBXbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js" integrity="sha512-Uw06iFFf9hwoN77+kPl/1DZL66tKsvZg6EWm7n6QxInyptVuycfrO52hATXDRozk7KWeXnrSueiglILct8IkkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- toc -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.js" integrity="sha512-BZUSsJAPNtkd+kdY/bD7hvQKZ5zlgWt++KGy/Pa/5uEJNgs0jZ6JaX6MuclRUanowuxmhb5S3LRPEa3QmrUVfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<!-- open external links in a new tab -->
+<script type="text/javascript">
+$(document).ready(function() { 
+    $(".gh-content a").each(function(){
+        if(this.href.indexOf(window.location.host) == -1) {
+            $(this).attr("target", "_blank");
+        }
+    })
+});
+</script>
+
+<!-- google translator -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4JYSH5XC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T4JYSH5XC4');
+</script>
+
+<!-- waline 
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://comments.undefapp.com',
+    });
+  </script>
+-->
+
+<script src="https://unpkg.com/cwd-widget@0.0.x/dist/cwd.js"></script>
+<script>
+	const comments = new CWDComments({
+		el: '#comments',
+		apiBaseUrl: 'https://cwd-api.sbugzu.workers.dev',
+	});
+	comments.mount();
+
+	// 或者
+	// document.addEventListener('DOMContentLoaded', () => {
+	// 	const comments = new window.CWDComments({
+	// 		el: '#comments',
+	// 		apiBaseUrl: 'https://your-api.example.com',
+	// 	});
+	// 	comments.mount();
+	// });
+</script>
+
+<script type="text/javascript">
+    tocbot.init({
+  		tocSelector: '.gh-toc',
+  		contentSelector: '.gh-content',
+  		headingSelector: 'h2, h3, h4',
+        collapseDepth: 4,
+        headingsOffset: 28,
+        // scrollSmooth: true,
+        hasInnerContainers: true
+	});
+</script>
+
+<!-- disqus 
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{url absolute="true"}}";
+        this.page.identifier = "ghost-{{comment_id}}"
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://undefapp.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+-->
+
+</body>
+</html>
