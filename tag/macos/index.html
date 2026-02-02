@@ -56,22 +56,13 @@
     <script defer src="/public/cards.min.js?v=a7559780cf"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
     <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a7559780cf">
     <!-- prism.js -->
-<!--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-gruvbox-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://cdn.bootcdn.net/ajax/libs/prism/1.30.0/prism-gruvbox-dark.min.css" type="text/css" rel="stylesheet" />
--->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-gruvbox-dark.min.css" integrity="sha512-XZoe1WroNfbcndQJexn+pbMEytiaSYRHDuKjew+Nn0xYSTmB4sfoZnBdqYCrXq2IwAcPZS/sXE5ju/JbppYOsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- Toc -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.css" integrity="sha512-/ANQiHMqpRl+E0zEAd250N21OOmJsYbhiJWY0Y8yG0TII47yZn1+gDNobMlf+h/FTyImprLXYgXbX3bCYyq/vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--
 <link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.36.4/tocbot.min.css" type="text/css" rel="stylesheet" />
 -->
-  <!-- Waline 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-  />-->
-  <!-- Waline -->
 
 <style type="text/css">
   
@@ -454,16 +445,9 @@ ZSH：语法高亮、自动补全、自定制（插件、主题等）、生态
 <script src="/assets/built/main.min.js?v=a7559780cf"></script>
 
 <!-- prism.js -->
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuMm1z2JLJG6XVU7C/mR+E7xBUqCivykuhlzfqxXBXbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
--->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js" integrity="sha512-Uw06iFFf9hwoN77+kPl/1DZL66tKsvZg6EWm7n6QxInyptVuycfrO52hATXDRozk7KWeXnrSueiglILct8IkkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- toc -->
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.min.js"></script>
--->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.36.4/tocbot.min.js" integrity="sha512-BZUSsJAPNtkd+kdY/bD7hvQKZ5zlgWt++KGy/Pa/5uEJNgs0jZ6JaX6MuclRUanowuxmhb5S3LRPEa3QmrUVfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
@@ -496,33 +480,13 @@ function googleTranslateElementInit() {
   gtag('config', 'G-T4JYSH5XC4');
 </script>
 
-<!-- waline 
-  <script type="module">
-    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-
-    init({
-      el: '#waline',
-      serverURL: 'https://comments.undefapp.com',
-    });
-  </script>
--->
-
 <script src="https://unpkg.com/cwd-widget@0.0.x/dist/cwd.js"></script>
 <script>
 	const comments = new CWDComments({
 		el: '#comments',
-		apiBaseUrl: 'https://cwd-api.sbugzu.workers.dev',
+		apiBaseUrl: 'https://comments.undefapp.com',
 	});
 	comments.mount();
-
-	// 或者
-	// document.addEventListener('DOMContentLoaded', () => {
-	// 	const comments = new window.CWDComments({
-	// 		el: '#comments',
-	// 		apiBaseUrl: 'https://your-api.example.com',
-	// 	});
-	// 	comments.mount();
-	// });
 </script>
 
 <script type="text/javascript">
