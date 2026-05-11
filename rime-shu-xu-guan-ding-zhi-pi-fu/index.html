@@ -4,67 +4,56 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧</title>
+    <title>Rime 鼠须管定制皮肤</title>
     <link rel="stylesheet" href="/assets/built/screen.css?v=f966b530ff">
 
     <link rel="icon" href="https://undefapp.com/content/images/size/w256h256/2022/08/android-chrome-192x192.png" type="image/png">
-    <link rel="canonical" href="https://undefapp.com/shi-yong-touchid/">
+    <link rel="canonical" href="https://undefapp.com/rime-shu-xu-guan-ding-zhi-pi-fu/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="未定义应用 | Undefined APP">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧">
-    <meta property="og:description" content="这篇文章将介绍如何使用 MacBook Pro/MacBook Air 上的指纹，代替录入 sudo 密码，密码长度越长效果越好。大概就是下图的效果：
+    <meta property="og:title" content="Rime 鼠须管定制皮肤">
+    <meta property="og:description" content="以下皮肤适用于 RIME | 中州韻輸入法引擎，是一款定制化程度高，速度飞快的输入法框架，加上丰富的词库后就变成非常强大的输入法。
 
-如果密码不太长且使用外接键盘的话，手不离开键盘可能会更方便一些 ;）
+Windows 下叫“小狼毫 Weasel”，MacOS 下叫“鼠鬚管 Squirrel”。以下是自用的两套皮肤。
 
+两套配置适配白色和暗黑模式。在 MacOS 和 Windows 中分别修改 squirrel.custom.yaml 或者 weasel.custom.yaml 文件，重新部署就可以使用了。
 
-使用软件的方法
-
-以前要实现这个功能，我们需要通过软件来实现这个功能，github 上有一些开源的实现方式：
-
-PAM TouchID 实现通过 TouchID 代替 sudo 密码的输入。
-
-PAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo 密码的输入，双击 AppleWatch 上的按钮就可完成校验。
-
-
-原生支持的方法
-
-目前 macOS 已经可以原生支持 TouchID 的验证，只需要修改 /etc/pam.d/sudo 文件，">
-    <meta property="og:url" content="https://undefapp.com/shi-yong-touchid/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000">
-    <meta property="article:published_time" content="2022-09-26T07:58:11.000Z">
-    <meta property="article:modified_time" content="2022-09-26T07:58:55.000Z">
-    <meta property="article:tag" content="macOS">
-    <meta property="article:tag" content="CLI">
+patch:
+  style:
+    color_scheme: macos_purple # 白亮模式下启用的皮肤，名字对应下方对皮肤的字义名
+    color_scheme_dark: macos_purple_dark # 暗黑模式下启用的皮肤
+  preset_color_schemes:
+    macos_purple:">
+    <meta property="og:url" content="https://undefapp.com/rime-shu-xu-guan-ding-zhi-pi-fu/">
+    <meta property="og:image" content="https://static.ghost.org/v4.0.0/images/publication-cover.jpg">
+    <meta property="article:published_time" content="2026-05-11T09:56:31.000Z">
+    <meta property="article:modified_time" content="2026-05-11T09:56:31.000Z">
+    <meta property="article:tag" content="Software">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧">
-    <meta name="twitter:description" content="这篇文章将介绍如何使用 MacBook Pro/MacBook Air 上的指纹，代替录入 sudo 密码，密码长度越长效果越好。大概就是下图的效果：
+    <meta name="twitter:title" content="Rime 鼠须管定制皮肤">
+    <meta name="twitter:description" content="以下皮肤适用于 RIME | 中州韻輸入法引擎，是一款定制化程度高，速度飞快的输入法框架，加上丰富的词库后就变成非常强大的输入法。
 
-如果密码不太长且使用外接键盘的话，手不离开键盘可能会更方便一些 ;）
+Windows 下叫“小狼毫 Weasel”，MacOS 下叫“鼠鬚管 Squirrel”。以下是自用的两套皮肤。
 
+两套配置适配白色和暗黑模式。在 MacOS 和 Windows 中分别修改 squirrel.custom.yaml 或者 weasel.custom.yaml 文件，重新部署就可以使用了。
 
-使用软件的方法
-
-以前要实现这个功能，我们需要通过软件来实现这个功能，github 上有一些开源的实现方式：
-
-PAM TouchID 实现通过 TouchID 代替 sudo 密码的输入。
-
-PAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo 密码的输入，双击 AppleWatch 上的按钮就可完成校验。
-
-
-原生支持的方法
-
-目前 macOS 已经可以原生支持 TouchID 的验证，只需要修改 /etc/pam.d/sudo 文件，">
-    <meta name="twitter:url" content="https://undefapp.com/shi-yong-touchid/">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000">
+patch:
+  style:
+    color_scheme: macos_purple # 白亮模式下启用的皮肤，名字对应下方对皮肤的字义名
+    color_scheme_dark: macos_purple_dark # 暗黑模式下启用的皮肤
+  preset_color_schemes:
+    macos_purple:">
+    <meta name="twitter:url" content="https://undefapp.com/rime-shu-xu-guan-ding-zhi-pi-fu/">
+    <meta name="twitter:image" content="https://static.ghost.org/v4.0.0/images/publication-cover.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="bug">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="macOS, CLI">
+    <meta name="twitter:data2" content="Software">
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="800">
+    <meta property="og:image:height" content="482">
     
     <script type="application/ld+json">
 {
@@ -87,19 +76,13 @@ PAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo
         "url": "https://undefapp.com/author/bug/",
         "sameAs": []
     },
-    "headline": "使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧",
-    "url": "https://undefapp.com/shi-yong-touchid/",
-    "datePublished": "2022-09-26T07:58:11.000Z",
-    "dateModified": "2022-09-26T07:58:55.000Z",
-    "image": {
-        "@type": "ImageObject",
-        "url": "https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&ixlib=rb-1.2.1&q=80&w=2000",
-        "width": 1200,
-        "height": 800
-    },
-    "keywords": "macOS, CLI",
-    "description": "这篇文章将介绍如何使用 MacBook Pro/MacBook Air 上的指纹，代替录入 sudo 密码，密码长度越长效果越好。大概就是下图的效果：\n\n如果密码不太长且使用外接键盘的话，手不离开键盘可能会更方便一些 ;）\n\n\n使用软件的方法\n\n以前要实现这个功能，我们需要通过软件来实现这个功能，github 上有一些开源的实现方式：\n\nPAM TouchID 实现通过 TouchID 代替 sudo 密码的输入。\n\nPAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo 密码的输入，双击 AppleWatch 上的按钮就可完成校验。\n\n\n原生支持的方法\n\n目前 macOS 已经可以原生支持 TouchID 的验证，只需要修改 /etc/pam.d/sudo 文件，因为该文件权限为只读，所以在修改前需要修改文件权限。\n\ncd /etc/pam.d\nsudo chmod 666 sudo\n\n使用 vim 等熟悉的编辑工具对文件进行编辑，在第一排后面追加 auth    sufficient    pam_tid.so，最终文件如下：\n\n# s",
-    "mainEntityOfPage": "https://undefapp.com/shi-yong-touchid/"
+    "headline": "Rime 鼠须管定制皮肤",
+    "url": "https://undefapp.com/rime-shu-xu-guan-ding-zhi-pi-fu/",
+    "datePublished": "2026-05-11T09:56:31.000Z",
+    "dateModified": "2026-05-11T09:56:31.000Z",
+    "keywords": "Software",
+    "description": "以下皮肤适用于 RIME | 中州韻輸入法引擎，是一款定制化程度高，速度飞快的输入法框架，加上丰富的词库后就变成非常强大的输入法。\n\nWindows 下叫“小狼毫 Weasel”，MacOS 下叫“鼠鬚管 Squirrel”。以下是自用的两套皮肤。\n\n两套配置适配白色和暗黑模式。在 MacOS 和 Windows 中分别修改 squirrel.custom.yaml 或者 weasel.custom.yaml 文件，重新部署就可以使用了。\n\npatch:\n  style:\n    color_scheme: macos_purple # 白亮模式下启用的皮肤，名字对应下方对皮肤的字义名\n    color_scheme_dark: macos_purple_dark # 暗黑模式下启用的皮肤\n  preset_color_schemes:\n    macos_purple:\n      name: 神秘紫 / MacOS Purple\n      author: sbugzu\n      candidate_format: &quot;[label]. [candidate] [comment]",
+    "mainEntityOfPage": "https://undefapp.com/rime-shu-xu-guan-ding-zhi-pi-fu/"
 }
     </script>
 
@@ -191,7 +174,7 @@ PAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo
 </style>
 </head>
 
-<body class="post-template tag-macos tag-cli tag-hash-import-2026-01-04-13-14 is-head-left-logo">
+<body class="post-template tag-software is-head-left-logo">
 <div class="site">
 
     <header id="gh-head" class="gh-head gh-outer">
@@ -227,47 +210,98 @@ PAM WatchID 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo
 <main class="site-main">
 
 
-    <article class="post tag-macos tag-cli tag-hash-import-2026-01-04-13-14 single-post">
+    <article class="post tag-software no-image no-image single-post">
 
         <header class="article-header gh-canvas">
             <div class="post-meta">
                 <span class="post-meta-item post-meta-date">
-                    <time datetime="2022-09-26">26 Sep 2022</time>
+                    <time datetime="2026-05-11">11 May 2026</time>
                 </span>
-                    <span class="post-meta-item post-meta-length">2 min read</span>
-                    <span class="post-meta-item post-meta-tags"><a class="post-tag post-tag-macos" href="/tag/macos/" title="macOS">macOS</a></span>
+                    <span class="post-meta-item post-meta-length">3 min read</span>
+                    <span class="post-meta-item post-meta-tags"><a class="post-tag post-tag-software" href="/tag/software/" title="Software">Software</a></span>
             </div>
-            <h1 class="post-title">使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧</h1>
-                <figure class="post-media kg-width-wide">
-        <img
-            class="post-image"
-            srcset="https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;400 400w,
-                    https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;750 750w,
-                    https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;960 960w,
-                    https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;1140 1140w,
-                    https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;1920 1920w"
-            sizes="(min-width: 960px) 960px, 92vw"
-            src="https://images.unsplash.com/photo-1637607699100-819a0a44ecb3?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDR8fHRvdWNoJTIwaWR8ZW58MHx8fHwxNjY0MTc4OTk0&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;960"
-            alt="使用 TouchID 代替录入 sudo 密码 -  macOS 软件小技巧"
-            loading="lazy"
-        >
-
-            <figcaption>Photo by <a href="https://unsplash.com/ja/@theregisti?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">TheRegisti</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></figcaption>
-    </figure>
-        </header>
+            <h1 class="post-title">Rime 鼠须管定制皮肤</h1>
+                    </header>
 
         <div class="gh-content gh-canvas">
             <aside class="gh-sidebar"><div class="gh-toc"></div></aside> 
-            <p>这篇文章将介绍如何使用 MacBook Pro/MacBook Air 上的指纹，代替录入 <code>sudo</code> 密码，密码长度越长效果越好。大概就是下图的效果：</p><figure class="kg-card kg-image-card"><img src="https://undefapp.com/content/images/2022/09/touchid4sudo.png" class="kg-image" alt loading="lazy" width="1120" height="774" srcset="https://undefapp.com/content/images/size/w600/2022/09/touchid4sudo.png 600w, https://undefapp.com/content/images/size/w1000/2022/09/touchid4sudo.png 1000w, https://undefapp.com/content/images/2022/09/touchid4sudo.png 1120w" sizes="(min-width: 720px) 720px"></figure><p>如果密码不太长且使用外接键盘的话，手不离开键盘可能会更方便一些 ;）</p><h2 id="%E4%BD%BF%E7%94%A8%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95">使用软件的方法</h2><p>以前要实现这个功能，我们需要通过软件来实现这个功能，<a href="https://github.com/?ref=undefapp.com">github</a> 上有一些开源的实现方式：</p><p><a href="https://github.com/Reflejo/pam-touchID?ref=undefapp.com">PAM TouchID</a> 实现通过 TouchID 代替 sudo 密码的输入。</p><p><a href="https://github.com/biscuitehh/pam-watchid?ref=undefapp.com">PAM WatchID</a> 是上面 TouchID 的一个分支，实现通过 WatchID 代替 sudo 密码的输入，双击 AppleWatch 上的按钮就可完成校验。</p><h2 id="%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95">原生支持的方法</h2><p>目前 macOS 已经可以原生支持 TouchID 的验证，只需要修改 <code>/etc/pam.d/sudo</code> 文件，因为该文件权限为只读，所以在修改前需要修改文件权限。</p><pre><code class="language-shell">cd /etc/pam.d
-sudo chmod 666 sudo</code></pre><p>使用 <code>vim</code> 等熟悉的编辑工具对文件进行编辑，在第一排后面追加 <code>auth    sufficient    pam_tid.so</code>，最终文件如下：</p><pre><code># sudo: auth account password session
-auth       sufficient     pam_tid.so  # &lt;- 新增加的一行
-auth       sufficient     pam_smartcard.so
-auth       required       pam_opendirectory.so
-account    required       pam_permit.so
-password   required       pam_deny.so
-session    required       pam_permit.so
-</code></pre><p>后面再使用 <code>sudo</code> 命令的时候，就会弹出录入 TouchID 的弹窗。最后恢复文件的权限</p><pre><code class="language-shell">sudo chmod 444 /etc/pam.d/sudo
-</code></pre><p>目前已经原生支持的 <a href="https://en.wikipedia.org/wiki/Pluggable_authentication_module?ref=undefapp.com">PAM</a>（可插拔的认证模块），可以在目录下 <code>/usr/lib/pam</code> 查看。</p><h2 id="%E9%99%84%E5%BD%95">附录</h2><ol><li><a href="https://stanislas.blog/2019/09/touch-id-sudo-macbook/?ref=undefapp.com">Using Touch ID for sudo authentication on a MacBook</a></li></ol>
+            <p>以下皮肤适用于 <a href="https://rime.im/?ref=undefapp.com" rel="noreferrer">RIME | 中州韻輸入法引擎</a>，是一款定制化程度高，速度飞快的输入法框架，加上丰富的词库后就变成非常强大的输入法。</p><p>Windows 下叫“小狼毫 Weasel”，MacOS 下叫“鼠鬚管 Squirrel”。以下是自用的两套皮肤。</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://undefapp.com/content/images/2026/05/image.png" class="kg-image" alt="" loading="lazy" width="614" height="164" srcset="https://undefapp.com/content/images/size/w600/2026/05/image.png 600w, https://undefapp.com/content/images/2026/05/image.png 614w"><figcaption><span style="white-space: pre-wrap;">macos_purple light theme</span></figcaption></figure><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://undefapp.com/content/images/2026/05/image-1.png" class="kg-image" alt="" loading="lazy" width="612" height="154" srcset="https://undefapp.com/content/images/size/w600/2026/05/image-1.png 600w, https://undefapp.com/content/images/2026/05/image-1.png 612w"><figcaption><span style="white-space: pre-wrap;">macos_purple dark theme</span></figcaption></figure><p>两套配置适配白色和暗黑模式。在 MacOS 和 Windows 中分别修改 <code>squirrel.custom.yaml</code> 或者 <code>weasel.custom.yaml</code> 文件，重新部署就可以使用了。</p><pre><code class="language-yaml">patch:
+  style:
+    color_scheme: macos_purple # 白亮模式下启用的皮肤，名字对应下方对皮肤的字义名
+    color_scheme_dark: macos_purple_dark # 暗黑模式下启用的皮肤
+  preset_color_schemes:
+    macos_purple:
+      name: 神秘紫 / MacOS Purple
+      author: sbugzu
+      candidate_format: "[label]. [candidate] [comment]" # 候选词格式， label:序号，candidate：候选词，comment: 词条注释
+      candidate_list_layout: linear # stacked | linear
+      text_orientation: horizontal # horizontal | vertical
+      status_message_type: mix # long | short | mix
+      # memorize_size: true # 控制选项标是否在接触屏幕边缘时有粘性
+
+      alpha: 1.0 # 候选窗口透明度：符点型数据，小数点形式，不然出错无法正常显示皮肤，0 时隐藏候选框
+      border_height: 0 # 边距宽度 - 上下
+      border_width: 0 # 边框宽度 - 左右， 两者同时存在时才显示边框
+      corner_radius: 4 # 候选框圆角大小
+      hilited_corner_radius: 0 # 圆角大小 - 高亮候选词,值为 0 时背景填充满候选框
+      base_offset: 0 # 文字基线调整
+      inline_preedit: true # 输入的编码是否直接写入到输入框中，如果为 false，未上屏的编码就会写在候选框中
+
+      font_point: 15 # 字体大小 - 候选
+      font_face: PingFang SC # 字体 - 候选文字
+      # label_font_face: PingFang SC # 字体    - 序号
+      label_font_point: 12 # 字体大小 - 序号
+      # candidate_font_face: PingFang SC # 字体    - 候选词
+      candidate_font_point: 14 # 字体大小 - 候选词
+      # comment_font_face: PingFang SC # 字体    - 注释
+      comment_font_point: 14 # 字体大小 - 注释
+
+      back_color: 0xffffff
+      # border_color: 0xe1e1e1
+      label_color: 0x999999
+      candidate_text_color: 0x482c30
+      comment_text_color: 0x999999
+      hilited_back_color: 0xa94452
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_label_color: 0xffffff
+      hilited_comment_text_color: 0xd8a7ae
+
+    macos_purple_dark:
+      name: 神秘紫黑 / MacOS Purple Dark
+      author: sbugzu
+      candidate_format: "[label]. [candidate] [comment]" # 候选词格式， label:序号，candidate：候选词，comment: 词条注释
+      candidate_list_layout: linear # stacked | linear
+      text_orientation: horizontal # horizontal | vertical
+      status_message_type: mix # long | short | mix
+      # memorize_size: true # 控制选项标是否在接触屏幕边缘时有粘性
+
+      alpha: 1.0 # 候选窗口透明度：符点型数据，小数点形式，不然出错无法正常显示皮肤，0 时隐藏候选框
+      border_height: 0 # 边距宽度 - 上下
+      border_width: 0 # 边框宽度 - 左右， 两者同时存在时才显示边框
+      corner_radius: 4 # 候选框圆角大小
+      hilited_corner_radius: 0 # 圆角大小 - 高亮候选词
+      base_offset: 0 # 文字基线调整
+      inline_preedit: true # 输入的编码是否直接写入到输入框中，如果为 false，未上屏的编码就会写在候选框中
+
+      font_point: 15 # 字体大小 - 候选
+      font_face: PingFang SC # 字体 - 候选文字
+      # label_font_face: PingFang SC # 字体    - 序号
+      label_font_point: 12 # 字体大小 - 序号
+      # candidate_font_face: PingFang SC # 字体    - 候选词
+      candidate_font_point: 14 # 字体大小 - 候选词
+      # comment_font_face: PingFang SC # 字体    - 注释
+      comment_font_point: 14 # 字体大小 - 注释
+
+      back_color: 0x352b0f
+      # border_color: 0xe1e1e1
+      label_color: 0x999999
+      candidate_text_color: 0x969385
+      comment_text_color: 0x999999
+      hilited_back_color: 0xa94452
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_label_color: 0xffffff
+      hilited_comment_text_color: 0xd8a7ae
+</code></pre>
         </div>
 
 
@@ -306,6 +340,26 @@ session    required       pam_permit.so
         </article>
 
 
+        <article class="post tag-selfhost tag-docker tag-software tag-nas tag-hash-import-2026-01-04-13-14 featured">
+
+            <figure class="post-media">
+                <div class="u-placeholder rectangle">
+                    <a class="post-image-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">
+                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1646217120680-735b95df956b?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxSZXN0cmljdGVkJTIwYWNjZXNzfGVufDB8fHx8MTcyNTk0MjE1MXww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;750" alt="FreshRSS 解决 sspai 图片防盗链问题" loading="lazy">
+                    </a>
+                </div>
+            </figure>
+
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a class="post-title-link" href="/freshrss-jie-jue-sspai-tu-pian-fang-dao-lian-wen-ti/">FreshRSS 解决 sspai 图片防盗链问题</a>
+                </h2>
+                <time class="post-meta" datetime="2024-09-10">10 Sep 2024</time>
+            </header>
+
+        </article>
+
+
         <article class="post tag-macos tag-software tag-hash-import-2026-01-04-13-14 no-image no-image">
 
 
@@ -314,26 +368,6 @@ session    required       pam_permit.so
                     <a class="post-title-link" href="/bartender5withwireguardscript/">Bartender 5 中通过脚本自动显示/隐藏 WireGuard 图标</a>
                 </h2>
                 <time class="post-meta" datetime="2023-10-15">15 Oct 2023</time>
-            </header>
-
-        </article>
-
-
-        <article class="post tag-macos tag-windows tag-linux tag-cli tag-hash-import-2026-01-04-13-14 featured">
-
-            <figure class="post-media">
-                <div class="u-placeholder rectangle">
-                    <a class="post-image-link" href="/chang-yong-cli-gong-ju-xia-yong-bao-ming-ling-xing-xi-lie-zhi-gong-ju-pian/">
-                        <img class="post-image u-object-fit" src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fGNtZHxlbnwwfHx8fDE2NjE4NDkyNDk&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;750" alt="常用 CLI 工具下 - 拥抱命令行系列之工具篇" loading="lazy">
-                    </a>
-                </div>
-            </figure>
-
-            <header class="post-header">
-                <h2 class="post-title">
-                    <a class="post-title-link" href="/chang-yong-cli-gong-ju-xia-yong-bao-ming-ling-xing-xi-lie-zhi-gong-ju-pian/">常用 CLI 工具下 - 拥抱命令行系列之工具篇</a>
-                </h2>
-                <time class="post-meta" datetime="2022-08-30">30 Aug 2022</time>
             </header>
 
         </article>
